@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\App_User_Controller;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,4 +18,5 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/app_user', [App_User_Controller::class, 'index'])->name('app_user.index');
+Route::get('/app_user', [App_User_Controller::class, 'index'])->name('app_users.index');
+Route::get('/app_user/add', [App_User_Controller::class, 'add'])->name('app_users.add');

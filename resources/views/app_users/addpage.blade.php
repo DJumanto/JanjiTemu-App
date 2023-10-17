@@ -9,7 +9,9 @@
 <body>
     <h1 class="container ms-2">Add a user</h1>
 
-    <form class="container ms-3">
+    <form class="container ms-3" method="post" action="{{route('app_users.add')}}">
+        @csrf
+        @method('post')
         <div class="mb-3">
             <label for="nama" class="form-label">Nama</label>
             <input type="text" class="form-control" id="nama">
@@ -29,7 +31,9 @@
                     <option value="admin">Admin</option>
                 </select>
         </div>
-        <button type="add" class="btn btn-primary">Add User</button>
+        <div>
+            <input type="submit" value="Add User">
+        </div>
     </form>
 </body>
 </html>

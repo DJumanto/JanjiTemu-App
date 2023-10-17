@@ -10,8 +10,11 @@ class App_User_Controller extends Controller
         return view('app_users.index');
     }
 
-    public function add(){
+    public function addview(){
         return view('app_users.addpage');
     }
 
+    public function add(Request $request){
+        dd($request);
+    }
 }

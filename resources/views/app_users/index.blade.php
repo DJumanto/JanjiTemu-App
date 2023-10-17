@@ -8,6 +8,5 @@
 </head>
 <body>
     <h1>Application Users</h1>
-    
 </body>
 </html>

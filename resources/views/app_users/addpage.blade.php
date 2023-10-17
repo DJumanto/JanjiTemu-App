@@ -8,7 +8,7 @@
 <body>
     <h1>Add a user</h1>
     <form method="post" action="">
-        
+        <input type="name" name="name">
     </form>
 </body>
 </html>

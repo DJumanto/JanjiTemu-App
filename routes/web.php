@@ -19,4 +19,5 @@ Route::get('/', function () {
 });
 
 Route::get('/app_user', [App_User_Controller::class, 'index'])->name('app_users.index');
-Route::get('/app_user/add', [App_User_Controller::class, 'add'])->name('app_users.add');
+Route::get('/app_user/addpage', [App_User_Controller::class, 'addview'])->name('app_users.addview');
+Route::post('/app_user', [App_User_Controller::class, 'add'])->name('app_users.add');

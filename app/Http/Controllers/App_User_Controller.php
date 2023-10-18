@@ -25,13 +25,21 @@ class App_User_Controller extends Controller
             'password.min' => 'Password harus terdiri dari minimal :min karakter.',
         ];
 
-        $data = $request->validate([
+        $request->validate([
             'nama' => 'required',
-            'email' => 'required|email',
-            'password' => 'required|min:8'
-        ], $messages);
+            'email' => 'required|email|unique:app_users',
+            'password' => 'required',
+            'status' => 'required',
+        ]);
+    
+        $appUser = new App_User([
+            'nama' => $request->input('nama'),
+            'email' => $request->input('email'),
+            'password' => $request->input('password'),
+            'status' => $request->input('status'),
+        ]);
 
-        $newApp_User = App_User::create($data);
+        $appUser->save();
 
         return redirect(route('app_user.index'));
     }

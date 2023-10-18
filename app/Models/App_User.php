@@ -15,4 +15,6 @@ class App_User extends Model
         'password',
         'status'
     ];
+
+    protected $table = 'app_users'; 
 }

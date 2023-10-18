@@ -9,7 +9,7 @@
 <body>
     <h1 class="container ms-2">Add a user</h1>
 
-    <form class="container ms-3" method="post" action="{{route('app_users.add')}}">
+    <form class="container ms-3" method="post" action="{{route('app_user.add')}}">
         <!-- class="container ms-3"  -->
         @csrf
         @method('post')

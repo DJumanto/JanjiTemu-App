@@ -18,6 +18,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/app_user', [App_User_Controller::class, 'index'])->name('app_users.index');
-Route::get('/app_user/addpage', [App_User_Controller::class, 'addview'])->name('app_users.addview');
-Route::post('/app_user', [App_User_Controller::class, 'add'])->name('app_users.add');
+Route::get('/app_user', [App_User_Controller::class, 'index'])->name('app_user.index');
+Route::get('/app_user/addpage', [App_User_Controller::class, 'addview'])->name('app_user.addview');
+Route::post('/app_user', [App_User_Controller::class, 'add'])->name('app_user.add');

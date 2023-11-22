@@ -14,7 +14,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
         integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
         crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/css/style.css">
     <title>JanjiTemu</title>
 </head>
 
@@ -77,51 +77,30 @@
                 </a>
             </div>
         </div>
-        <div class="row ms-4 mt-4">
-            <div class="col-md-3">
-                <div class="card" style="width: 18rem;">
-                    <img src="/img/event1.png" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title"><a
-                                class="link-dark link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover"
-                                href="#">Business Insight 2023</a></h5>
-                        <p class="card-text">Hosted by : Proxsis Indonesia</p>
-                        <p><i class="bi bi-calendar4-event"></i> Senin, 27 NOV 2023 - 9:00 WIB</p>
-                        <h6><i class="bi bi-ticket-perforated"></i> FREE</h6>
-                        <div class="float-end">
-                            <a href="#" class="btn btn-primary">Daftar sekarang</a>
+        <div class="d-flex justify-content-center align-items-center vh-100">
+        @foreach($results as $result)
+            <div class="row ms-4 mt-4">
+                <div class="col-md-3">
+                    <div class="card" style="width: 18rem;">
+                        <img src="{{ asset(str_replace('public', 'storage', $result->e_image)) }}" widht="500px" height="200px" class="card-img-top" alt="Event Image">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <a href="#" class="link-dark link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover">
+                                    {{ $result->e_name }}
+                                </a>
+                            </h5>
+                            <p class="card-text">Hosted by: {{ $result->g_name }}</p>
+                            <p class="card-text">Place: {{ $result->e_place }}</p>
+                            <p><i class="bi bi-calendar4-event"></i> {{ $result->e_date }} - {{ $result->e_time }}</p>
+                            <h6><i class="bi bi-ticket-perforated"></i> FREE</h6>
+                            <div class="float-end">
+                                <a href="#" class="btn btn-primary">Daftar sekarang</a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-3">
-                <div class="card" style="width: 18rem;">
-                    <img src="/img/event2.jpg" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Kidscares Charity Night</h5>
-                        <p class="card-text">Hosted by : Zanes Kidscare</p>
-                        <p><i class="bi bi-calendar4-event"></i> Minggu, 20 OCT 2023 - 11:30 WIB</p>
-                        <h6><i class="bi bi-ticket-perforated"></i> FREE</h6>
-                        <div class="float-end">
-                            <a href="#" class="btn btn-primary">Daftar sekarang</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card" style="width: 18rem;">
-                    <img src="/img/event3.jpg" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Brooklyn NYC Dribble Meetup</h5>
-                        <p class="card-text">Hosted by : Brooklyn HQ</p>
-                        <p><i class="bi bi-calendar4-event"></i> Kamis, 30 JUN 2023 - 19:00 WIB</p>
-                        <h6><i class="bi bi-ticket-perforated"></i> FREE</h6>
-                        <div class="float-end">
-                            <a href="#" class="btn btn-primary">Daftar sekarang</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        @endforeach
         </div>
         <br><br>
         <div class="row ms-4 rounded" style="background-color:#7879DF;">
@@ -137,6 +116,7 @@
                 <img src="/img/friends3-res-no.png" alt="">
             </div>
         </div>
+    </div>
 </body>
 
 </html>

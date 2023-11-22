@@ -5,7 +5,7 @@
       "e_description": "Kumpul komunitas Sugar Glider Bulak Banteng",
       "e_place": "Taman Bungkul Surabaya",
       "e_date": "2023-01-15T10:30:00",
-      "e_image": "somepath",
+      "e_image": "/public/eventimages/logo1.jpg",
       "Group_g_uuid": "4a5d396e-5fc1-4dab-a946-6d6e301a23b2",
       "e_event_host": "a5416de7-6e7d-4fe0-8d5e-90186504e19f"
     },
@@ -15,7 +15,7 @@
       "e_description": "Raid bareng komunitas, raid shiny kyogre event",
       "e_place": "Taman Bungkul Surabaya",
       "e_date": "2023-02-20T15:45:00",
-      "e_image": "somepath",
+      "e_image": "/public/eventimages/logo3.jpg",
       "Group_g_uuid": "b11d4531-9c45-4ed4-85a8-7643e06ab1a7",
       "e_event_host": "8c712c65-c305-4d64-9a42-9a5cf6a9c8cc"
     },
@@ -25,7 +25,7 @@
       "e_description": "Training and Workshop bareng komunitas AWS",
       "e_place": "Laboratorium Arsitektur Jaringan Komputer ITS",
       "e_date": "2023-03-25T18:00:00",
-      "e_image": "somepath",
+      "e_image": "/public/eventimages/logo2.jpg",
       "Group_g_uuid": "87ce82a0-3d70-4bc5-aa2e-d50a86d5c28d",
       "e_event_host": "f83e7e1f-2a82-45e0-bb84-3b7db9cb8aa6"
     }

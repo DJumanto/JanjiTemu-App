@@ -12,9 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('event_tags', function (Blueprint $table) {
-            $table->uuid('et_id')->primary();
             $table->uuid('Event_e_id')->index();
-            $table->integer('Tag_t_id')->index();
+            $table->uuid('Tag_t_id')->index();
             $table->timestamp('created_at')->useCurrent();
 
             $table->foreign('Event_e_id')->references('e_id')->on('events');

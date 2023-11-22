@@ -16,14 +16,15 @@ return new class extends Migration
             $table->string('e_name', 100);
             $table->string('e_description', 400)->nullable();
             $table->string('e_place', 50);
+            $table->string('e_image')->nullable();
             $table->dateTime('e_date');
             $table->uuid('Group_g_uuid')->index();
-            $table->uuid('User_Group_ug_id')->index();
+            $table->uuid('e_event_host')->index();
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
 
             $table->foreign('Group_g_uuid')->references('g_id')->on('groups');
-            $table->foreign('User_Group_ug_id')->references('ug_id')->on('user_groups');
+            $table->foreign('e_event_host')->references('ug_id')->on('user_groups');
         });
     }
 

@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('tags', function (Blueprint $table) {
-            $table->integer('t_id')->primary();
+            $table->uuid('t_id')->primary();
             $table->string('t_name');
         });
     }

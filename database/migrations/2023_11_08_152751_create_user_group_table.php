@@ -13,13 +13,13 @@ return new class extends Migration
     {
         Schema::create('user_groups', function (Blueprint $table) {
             $table->uuid('ug_id')->primary();
-            $table->uuid('User_u_id')->index();
+            $table->integer('User_u_id')->index();
             $table->uuid('Group_g_id')->index();
             $table->integer('Group_Role_gr_id');
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
 
-            $table->foreign('User_u_id')->references('u_id')->on('users');
+            $table->foreign('User_u_id')->references('id')->on('users');
             $table->foreign('Group_g_id')->references('g_id')->on('groups');
             $table->foreign('Group_Role_gr_id')->references('gr_id')->on('group_roles');
         });

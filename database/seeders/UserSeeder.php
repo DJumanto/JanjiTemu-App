@@ -18,12 +18,11 @@ class UserSeeder extends Seeder
 
         foreach ($users as $user) {
             DB::table("users")->insert([
-                "u_id" => $user->u_id,
-                "u_email" => $user->u_email,
-                "u_password" => $user->u_password,
-                "u_roles_id" => $user->u_roles_id,
-                "u_first_name" => $user->u_first_name,
-                "u_last_name" => $user->u_last_name,
+                "email" => $user->email,
+                "password" => $user->password,
+                "roles_id" => $user->roles_id,
+                "first_name" => $user->first_name,
+                "last_name" => $user->last_name,
             ]);
         }
     }

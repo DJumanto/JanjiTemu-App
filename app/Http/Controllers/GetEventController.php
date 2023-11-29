@@ -12,4 +12,10 @@ class GetEventController extends Controller
         $results = $getSomeEventService->execute(3);
         return view('index', ['results' => $results]);
     }
+
+    public function CreateEvent(){}
+    public function SearchEvent(){}
+    public function UpdateEvent(){}
+    public function DeleteEvent(){}
+    
 }

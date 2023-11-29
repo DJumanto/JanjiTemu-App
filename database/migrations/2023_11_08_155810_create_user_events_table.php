@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('user_events', function (Blueprint $table) {
             $table->uuid('ue_id')->primary();
-            $table->uuid('User_u_id')->index();
+            $table->integer('User_u_id')->index();
             $table->uuid('Event_e_id')->index();
 
-            $table->foreign('User_u_id')->references('u_id')->on('users');
+            $table->foreign('User_u_id')->references('id')->on('users');
             $table->foreign('Event_e_id')->references('e_id')->on('events');
         });
     }

@@ -1,51 +1,51 @@
 [
     {
-      "u_id": "ae7a1eb1-2e6a-4b61-9c84-d54c8c36935e",
-      "u_email": "pengguna1@example.com",
-      "u_password": "password1",
-      "u_roles_id": 2,
-      "u_first_name": "Ahmad",
-      "u_last_name": "Djumiran"
+      "id": 1,
+      "email": "pengguna1@example.com",
+      "password": "password1",
+      "roles_id": 2,
+      "first_name": "Ahmad",
+      "last_name": "Djumiran"
     },
     {
-      "u_id": "f4e52111-956f-496d-8b10-b9eb8c5e7b21",
-      "u_email": "pengguna2@example.com",
-      "u_password": "password2",
-      "u_roles_id": 2,
-      "u_first_name": "Mari",
-      "u_last_name": "Yadi"
+      "id": 2,
+      "email": "pengguna2@example.com",
+      "password": "password2",
+      "roles_id": 2,
+      "first_name": "Mari",
+      "last_name": "Yadi"
     },
     {
-      "u_id": "d8e43a02-7a19-49a3-b3c1-7d0e1abaf0c7",
-      "u_email": "pengguna3@example.com",
-      "u_password": "password3",
-      "u_roles_id": 2,
-      "u_first_name": "Ahmad",
-      "u_last_name": "Baihaqi"
+      "id": 3,
+      "email": "pengguna3@example.com",
+      "password": "password3",
+      "roles_id": 2,
+      "first_name": "Ahmad",
+      "last_name": "Baihaqi"
     },
     {
-      "u_id": "d8e43a12-7a19-49a3-b3c1-7d0e1abaf0c7",
-      "u_email": "pengguna4@example.com",
-      "u_password": "password4",
-      "u_roles_id": 2,
-      "u_first_name": "Daffa",
-      "u_last_name": "Hurra"
+      "id": 4,
+      "email": "pengguna4@example.com",
+      "password": "password4",
+      "roles_id": 2,
+      "first_name": "Daffa",
+      "last_name": "Hurra"
     },
     {
-      "u_id": "d8e43a22-7a19-49a3-b3c1-7d0e1abaf0c7",
-      "u_email": "pengguna5@example.com",
-      "u_password": "password5",
-      "u_roles_id": 2,
-      "u_first_name": "Syukra",
-      "u_last_name": "Radjiman"
+      "id": 5,
+      "email": "pengguna5@example.com",
+      "password": "password5",
+      "roles_id": 2,
+      "first_name": "Syukra",
+      "last_name": "Radjiman"
     },
     {
-      "u_id": "d8e43432-7a19-49a3-b3c1-7d0e1abaf0c7",
-      "u_email": "pengguna6@example.com",
-      "u_password": "password6",
-      "u_roles_id": 2,
-      "u_first_name": "Akmal",
-      "u_last_name": "Anom"
+      "id": 6,
+      "email": "pengguna6@example.com",
+      "password": "password6",
+      "roles_id": 2,
+      "first_name": "Akmal",
+      "last_name": "Anom"
     }
   ]
   

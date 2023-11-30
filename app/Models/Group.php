@@ -12,13 +12,15 @@ class Group extends Model
     private string $g_name;
     private string $g_description;
     private int $g_users;
+    private string $created_at;
 
-    public function __construct(string $g_id, string $g_name, string $g_description, int $g_users)
+    public function __construct(string $g_id, string $g_name, string $g_description, int $g_users, string $created_at)
     {
         $this->g_id = $g_id;
         $this->g_name = $g_name;
         $this->g_description = $g_description;
         $this->g_users = $g_users;
+        $this->created_at = $created_at;
     }
 
     public function getGroupId(): string
@@ -39,5 +41,10 @@ class Group extends Model
     public function getGroupUsers(): string
     {
         return $this->g_users;
+    }
+
+    public function getGroupCreatedAt(): string
+    {
+        return $this->created_at;
     }
 }

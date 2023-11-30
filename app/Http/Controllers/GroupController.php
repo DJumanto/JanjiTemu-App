@@ -10,11 +10,14 @@ use App\Http\Services\GroupServices\GetGroupService;
 use App\Http\Services\GroupServices\CreateGroupService;
 use App\Http\Services\GroupServices\SearchGroupService;
 use App\Http\Services\UserGroupServices\AddUserGroupService;
+use App\Http\Services\UserGroupServices\GetUserInGroupByRoleService;
+use App\Http\Services\GroupServices\GetGroupByIdService;
 use App\Models\UserGroup;
 use Throwable;
 use Illuminate\Support\Facades\Auth;
 class GroupController extends Controller
 {
+    //show group list
     public function GetGroup(Request $request, GetGroupService $getGroupService)
     {
         $count = $request->input('count')??10;
@@ -23,6 +26,7 @@ class GroupController extends Controller
         return view('group',['results'=>$results]);
     }
 
+    //create new group, and auto set user as master
     public function CreateGroup(Request $request, AddUserGroupService $addUserGroupService, CreateGroupService $createGroupService)
     {
         $request->validate([
@@ -58,10 +62,20 @@ class GroupController extends Controller
         return redirect()->route('group',['status'=>'success membuat grup']);
     }
 
+    //show group search result
     public function SearchGroup(Request $request, SearchGroupService $searchGroupService)
     {
         $group = $request->input('group');
         $results = $searchGroupService->execute($group);
         return view('searchgroup',['results'=>$results]);
+    }
+
+    //Get group by id and show it's group's master
+    public function GetGroupById(Request $request, GetGroupByIdService $getGroupByIdService, GetUserInGroupByRoleService $getUserInGroupByRoleService)
+    {
+        $groupId = $request->input('groupid');
+        $results = $getGroupByIdService->execute($groupId);
+        $results['master'] = $getUserInGroupByRoleService->execute(1, $groupId);
+        return view('groupdetail',['results'=>$results]);
     }
 }

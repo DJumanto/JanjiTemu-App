@@ -88,7 +88,7 @@
                             <p><i class="bi bi-calendar4-event"></i> {{ $result->e_date }} - {{ $result->e_time }}</p>
                             <h6><i class="bi bi-ticket-perforated"></i> FREE</h6>
                             <div class="float-end">
-                                <a href="#" class="btn" style="text-decoration: underline; text-decoration-color: #7879DF; text-decoration-thickness: 1.5px; text-underline-offset: 10px; font-weight:700; color:#7879DF">Daftar sekarang</a>
+                                <a href="#" class="btn" style="text-decoration: underline; text-decoration-color: #7879DF; text-decoration-thickness: 1.5px; text-underline-offset: 10px; font-weight:700; color:#7879DF">Daftar sekarang <i class="bi bi-arrow-right-square fa-6x"></i></a>
                             </div>
                         </div>
                     </div>

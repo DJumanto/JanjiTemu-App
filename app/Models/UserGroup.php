@@ -11,14 +11,14 @@ class UserGroup extends Model
 
     private string $ug_id;
     private int $User_u_id;
-    private string $Group_g_uuid;
+    private string $Group_g_id;
     private int $GroupRole_gr_id;
 
-    public function __contruct(string $ug_id, int $User_u_id, string $Group_g_uuid, int $GroupRole_gr_id)
+    public function __construct(string $ug_id, int $User_u_id, string $Group_g_id, int $GroupRole_gr_id)
     {
         $this->ug_id = $ug_id;
         $this->User_u_id = $User_u_id;
-        $this->Group_g_uuid = $Group_g_uuid;
+        $this->Group_g_id = $Group_g_id;
         $this->GroupRole_gr_id = $GroupRole_gr_id;
     }
 
@@ -34,7 +34,7 @@ class UserGroup extends Model
 
     public function getUserGroupGroupId(): string
     {
-        return $this->Group_g_uuid;
+        return $this->Group_g_id;
     }
 
     public function getUserGroupGroupRoleId(): int

@@ -21,7 +21,15 @@
                     <button class="btn btn-outline-primary" type="submit"><i class="bi bi-search"></i></button>
                 </form>
             </div>
-
+            <div class="row align-items-center">
+                <button type="button" class="btn position-relative" style="background-color:#7879DF; color:white;">
+                    Notifications
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                        10
+                        <span class="visually-hidden">unread messages</span>
+                    </span>
+                </button>
+            </div>
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ms-6">
                 <x-dropdown align="right" width="48">

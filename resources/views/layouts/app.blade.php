@@ -43,6 +43,18 @@
             </div>
         </main>
     </div>
+    <footer class="footer text-white text-center p-5" style="background-color: #454681; height: auto; width: 100%;">
+        <div class="footerContent">
+            <div class="d-flex-row p-3">
+                <p>Buat grup JanjiTemu Anda sekarang <a href="#" class="btn btn-outline-light" style="color: white; font-weight: 600; transition: background-color 0.3s, color 0.3s; border-width: 3px;">Mulai buat grup</a>
+                </p>
+            </div>
+            <div>
+                <h6 class="mb-5">JanjiTemu</h6>
+                <a href="#">About</a>
+            </div>
+        </div>
+    </footer>
 </body>
 
 </html>

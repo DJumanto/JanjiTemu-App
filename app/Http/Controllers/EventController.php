@@ -61,6 +61,7 @@ class EventController extends Controller
             DB::rollback();
             throw $e;
         }
+        DB::commit();
         dd('success');
         return redirect()->route('index',['status'=>'success membuat event']);
     }

@@ -29,6 +29,7 @@ Route::middleware('auth')->group(function () {
         return view('creategroup');
     })->name('group.getcreate');
     Route::prefix('/group/{group_id}')->group(function () {
+        Route::get('/',[GroupController::class, 'GetGroupById'])->name('group.getgroupbyid');
         Route::get('/event/add', [EventController::class, 'index'])->name('event.index'); // add event to group
         Route::post('/event/add', [EventController::class, 'CreateEvent'])->name('event.store'); // add event to group
         Route::patch('/event/update/{event_id}', [EventController::class, 'UpdateEvent'])->name('event.update'); // update event

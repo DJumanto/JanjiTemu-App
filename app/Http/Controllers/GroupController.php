@@ -15,15 +15,16 @@ use App\Http\Services\GroupServices\GetGroupByIdService;
 use App\Models\UserGroup;
 use Throwable;
 use Illuminate\Support\Facades\Auth;
+
 class GroupController extends Controller
 {
     //show group list
     public function GetGroup(Request $request, GetGroupService $getGroupService)
     {
-        $count = $request->input('count')??10;
+        $count = $request->input('count') ?? 10;
         $results = $getGroupService->execute($count);
-        dd($results);
-        return view('group',['results'=>$results]);
+        // dd($results);
+        return view('group', ['results' => $results]);
     }
 
     //create new group, and auto set user as master
@@ -35,7 +36,7 @@ class GroupController extends Controller
         ]);
         $groupId = Str::uuid();
         DB::beginTransaction();
-        try{
+        try {
             $group = new Group(
                 $groupId,
                 $request->input('name'),
@@ -52,14 +53,13 @@ class GroupController extends Controller
                 1
             );
             $addUserGroupService->execute($userGroup);
-        }
-        catch(\Exception $e){
+        } catch (\Exception $e) {
             DB::rollback();
             throw $e;
         }
         DB::commit();
         dd('success');
-        return redirect()->route('group',['status'=>'success membuat grup']);
+        return redirect()->route('group', ['status' => 'success membuat grup']);
     }
 
     //show group search result
@@ -67,7 +67,7 @@ class GroupController extends Controller
     {
         $group = $request->input('group');
         $results = $searchGroupService->execute($group);
-        return view('searchgroup',['results'=>$results]);
+        return view('searchgroup', ['results' => $results]);
     }
 
     //Get group by id and show it's group's master
@@ -76,6 +76,6 @@ class GroupController extends Controller
         $groupId = $request->input('groupid');
         $results = $getGroupByIdService->execute($groupId);
         $results['master'] = $getUserInGroupByRoleService->execute(1, $groupId);
-        return view('groupdetail',['results'=>$results]);
+        return view('groupdetail', ['results' => $results]);
     }
 }

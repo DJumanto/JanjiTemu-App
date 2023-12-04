@@ -11,7 +11,7 @@
         <div class="col-md ms-auto mt-5">
             <a class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="#" style="color:#7879DF; font-weight:600;">
                 <br>
-                <h6>Lihat semua</h6>
+                <h6>Lihat semua event</h6>
             </a>
         </div>
     </div>
@@ -80,11 +80,11 @@
     <!-- Part Your Group -->
     <div class="row">
         <div class="col-md-9 ms-5 mt-5">
-            <h2 class="h4">Group Anda</h2 </div>
+            <h2 class="h4">Grup Anda</h2 </div>
         </div>
         <div class="col-md ms-auto mt-5">
-            <a class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="#" style="color:#7879DF; font-weight:600;">
-                <h6>Lihat semua group</h6>
+            <a class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="{{ route('group.getgroup') }}" style="color:#7879DF; font-weight:600;">
+                <h6>Lihat semua grup</h6>
             </a>
         </div>
     </div>

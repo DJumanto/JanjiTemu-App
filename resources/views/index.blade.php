@@ -159,7 +159,7 @@
             </figure>
             <figure class="figure">
                 <img src="/img/social2-res.jpg" class="figure-img img-fluid rounded" alt="...">
-                <figcaption class="figure-caption">Atau Anda dapat sekadar bercengkerama bersama teman-teman Anda
+                <figcaption class="figure-caption">Atau Anda dapat sekedar bercengkerama bersama teman-teman Anda
                 </figcaption>
             </figure>
             <figure class="figure">
@@ -177,7 +177,7 @@
                 </p>
             </div>
             <div>
-                <h6>JanjiTemu</h6>
+                <h6 class="mb-5">JanjiTemu</h6>
                 <a href="#">About</a>
             </div>
         </div>

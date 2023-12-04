@@ -1,8 +1,14 @@
-body{
-    min-height: 2000px;
-}
 
 .btn-outline-light:hover {
     background-color: white !important; /* Change the background color on hover */
     color: #454681 !important; /* Change the text color on hover */
+}
+
+a {
+    color: #7879DF;
+    text-decoration: none; /* Untuk menghapus dekorasi garis bawah default */
+}
+
+a:hover {
+    text-decoration: underline; /* Untuk menambahkan garis bawah saat dihover */
 }

@@ -83,7 +83,7 @@
             <h2 class="h4">Group Anda</h2 </div>
         </div>
         <div class="col-md ms-auto mt-5">
-            <a class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="#" style="color:#7879DF; font-weight:600;">
+            <a class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="{{ route('group.getgroup') }}" style="color:#7879DF; font-weight:600;">
                 <h6>Lihat semua group</h6>
             </a>
         </div>

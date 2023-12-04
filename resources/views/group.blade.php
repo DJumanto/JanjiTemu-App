@@ -1,18 +1,19 @@
 <x-app-layout>
     <x-slot name="header">
-        <p class="h3">{ Disini akan dibuat search bar untuk group }</p>
+        <div class="row justify-content-start">
+            <div class="col-3 ms-5">
+                <form class="d-flex" role="search">
+                    <input class="form-control me-2 rounded" type="search" placeholder="Nama grup" aria-label="Search" style="border-color: rgba(0, 0, 0, 0.25);">
+                    <button class="btn" style="background-color:#7879DF; color:white;" type="submit">Cari</button>
+                </form>
+            </div>
+        </div>
     </x-slot>
 
     <!-- Part Your Group -->
     <div class="row">
-        <div class="col-md-9 ms-5 mt-5">
-            <h2 class="h4">Group Anda</h2 </div>
-        </div>
-        <div class="col-md ms-auto mt-5">
-            <a class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="#" style="color:#7879DF; font-weight:600;">
-                <br>
-                <h6>Lihat semua</h6>
-            </a>
+        <div class="col-md-9 ms-5 mt-3 mb-3">
+            <h2 class="h4">Grup Anda</h2 </div>
         </div>
     </div>
     <!-- Part Your Group Card -->

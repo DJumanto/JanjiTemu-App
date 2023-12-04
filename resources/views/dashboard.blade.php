@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        <h1 class="display-6"><b>Selamat datang,</b> <b><strong> [User]</strong></b></h1>
+        <h1 class="display-6"><b>Selamat datang, </b><b><strong>{{ $user->first_name }} {{ $user->last_name }}</strong></b></h1>
     </x-slot>
 
     <!-- Part Your Event -->

@@ -44,10 +44,10 @@ class SqlUserGroup{
         ->select('ug_id','Group_Role_gr_id')
         ->where('User_u_id', $userID)
         ->where('Group_g_id', $groupID)
-        ->get();
-        return $results[0];
+        ->first();
+        return $results;
     }
-    
+
     public function getMemberInGroup(string $groupId){
         $results = DB::table('user_groups')
         ->select('u.first_name', 'u.last_name', 'gr.gr_position as role')

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Services\UserGroupServices\GetGroupPermisionService;
 use Illuminate\Http\Request;
 use App\Models\Group;
 use Illuminate\Support\Str;
@@ -14,6 +15,7 @@ use App\Http\Services\UserGroupServices\GetUserInGroupByRoleService;
 use App\Http\Services\GroupServices\GetGroupByIdService;
 use App\Http\Services\GroupServices\GetGroupTotalEventService;
 use App\Http\Services\UserGroupServices\GetGroupMemberService;
+use App\Http\Services\EventServices\GetEventInGroupService;
 use App\Models\UserGroup;
 use Throwable;
 use Illuminate\Support\Facades\Auth;
@@ -75,16 +77,24 @@ class GroupController extends Controller
     }
 
     //Get group by id and show it's group's master
-    public function GetGroupById(string $id, Request $request, GetGroupByIdService $getGroupByIdService, GetUserInGroupByRoleService $getUserInGroupByRoleService, GetGroupTotalEventService $getGroupTotalEventService, GetGroupMemberService $getGroupMemberService)
+    public function GetGroupById(string $id,
+    GetGroupByIdService $getGroupByIdService, 
+    GetUserInGroupByRoleService $getUserInGroupByRoleService, 
+    GetGroupTotalEventService $getGroupTotalEventService, 
+    GetGroupMemberService $getGroupMemberService,
+    GetEventInGroupService $getEventInGroupService,
+    GetGroupPermisionService $getGroupPermisionService)
     {
         $results = $getGroupByIdService->execute($id);
         // if(isEmpty($results)){
         //     return view('groupdetail', ['results' => $results]);
         // }
+        $user_status = $getGroupPermisionService->execute(Auth::user()->id, $id);
+        $events = $getEventInGroupService->execute($id);
         $members = $getGroupMemberService->execute($id);
         $results->total_event = $getGroupTotalEventService->execute($id);
         $group_master = $getUserInGroupByRoleService->execute(1, $id)[0];
-        return view('groupdetail', ['results' => $results, 'group_master' => $group_master, 'members' => $members]);
+        return view('groupdetail', ['results' => $results, 'group_master' => $group_master, 'members' => $members, 'events' => $events, 'user_status' => $user_status]);
     }
 
     // // Fungsi selama Pengembangan FE Group Detail

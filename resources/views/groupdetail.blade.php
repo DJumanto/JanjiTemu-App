@@ -102,66 +102,31 @@
             <h4 class="h4">Event grup ini</h4>
             <!-- Part Event of The Group Card -->
             <div class="grid gap-0 row-gap-3" id="group-event-card">
-                <div class="card position-relative" style="width: 100%;">
-                    <div class="row g-0">
-                        <div class="col-md-4">
-                            <img src="/img/event4.jpg" class="card-img-top img-fluid" alt="...">
-                        </div>
-                        <div class="col-md-8">
-                            <div class="card-body">
-                                <h5 class="card-title"><a class="link-dark link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="#">Autumn Party</a></h5>
-                                <p class="card-text">Hosted by: Weather Indonesia</p>
-                                <p><i class="bi bi-calendar4-event"></i> Minggu, 15 OCT 2023 - 9:00 WIB</p>
-                                <h6><i class="bi bi-ticket-perforated"></i> FREE</h6>
-                                <div class="position-absolute bottom-0 end-0 mb-3 me-3">
-                                    <button href="#" class="btn btn-primary" style="color:white;">Edit Event</button>
-                                    <button href="#" class="btn btn-danger" style="color:white">Delete Event</button>
+                @foreach($events as $event)
+                    <div class="card position-relative" style="width: 100%;">
+                        <div class="row g-0">
+                            <div class="col-md-4">
+                                <img src="{{ str_replace('public', 'storage', $event->e_image) }}" class="card-img-top img-fluid" alt="Event Image">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h5 class="card-title"><a class="link-dark link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="#">{{ $event->e_name }}</a></h5>
+                                    <p class="card-text">Hosted by: {{ $event->g_name }}</p>
+                                    <p><i class="bi bi-calendar4-event"></i> {{ \Carbon\Carbon::parse($event->e_date)->format('l, d M Y - H:i A') }}</p>
+                                    <h6><i class="bi bi-ticket-perforated"></i> FREE</h6>
+                                    <div class="position-absolute bottom-0 end-0 mb-3 me-3">
+                                        @if($user_status == 3 || $user_status == null)
+                                            <button href="#" class="btn btn-primary" style="color:white;">Join Event</button>
+                                        @else
+                                            <button href="#" class="btn btn-primary" style="color:white;">Edit Event</button>
+                                            <button href="#" class="btn btn-danger" style="color:white">Delete Event</button>
+                                        @endif
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <!-- test 3 -->
-                <div class="card position-relative" style="width: 100%;">
-                    <div class="row g-0">
-                        <div class="col-md-4">
-                            <img src="/img/event5.jpeg" class="card-img-top img-fluid" alt="...">
-                        </div>
-                        <div class="col-md-8">
-                            <div class="card-body">
-                                <h5 class="card-title"><a class="link-dark link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="#">Kadin Banten Expo 2022</a></h5>
-                                <p class="card-text">Hosted by: Pemprov Banten</p>
-                                <p><i class="bi bi-calendar4-event"></i> Minggu, 19 DEC 2023 - 11:30 WIB</p>
-                                <h6><i class="bi bi-ticket-perforated"></i> FREE</h6>
-                                <div class="position-absolute bottom-0 end-0 mb-3 me-3">
-                                    <button href="#" class="btn btn-primary" style="color:white;">Edit Event</button>
-                                    <button href="#" class="btn btn-danger" style="color:white">Delete Event</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- end test -->
-                <div class="card position-relative" style="width: 100%;">
-                    <div class="row g-0">
-                        <div class="col-md-4">
-                            <img src="/img/event6.jpg" class="card-img-top img-fluid" alt="...">
-                        </div>
-                        <div class="col-md-8">
-                            <div class="card-body">
-                                <h5 class="card-title"><a class="link-dark link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="#">Control Premiere</a></h5>
-                                <p class="card-text">Hosted by: Remedy Entertainment</p>
-                                <p><i class="bi bi-calendar4-event"></i> Kamis, 27 AUG 2023 - 19:00 WIB</p>
-                                <h6><i class="bi bi-ticket-perforated"></i> FREE</h6>
-                                <div class="position-absolute bottom-0 end-0 mb-3 me-3">
-                                    <button href="#" class="btn btn-primary" style="color:white;">Edit Event</button>
-                                    <button href="#" class="btn btn-danger" style="color:white">Delete Event</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
+                @endforeach
             </div>
         </div>
         <br><br><br><br>

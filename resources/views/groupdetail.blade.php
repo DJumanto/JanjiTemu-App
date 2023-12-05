@@ -29,7 +29,7 @@
 
     <!-- button to create new event -->
     <div class="d-grid d-md-flex mt-3 justify-content-end">
-        <button class="btn btn-primary btn-lg custom-btn me-5" href="{{ route('group.testcreateevent') }}" role="button">Buat event baru <i class="bi bi-plus-circle"></i></button>
+        <button class="btn btn-primary btn-lg custom-btn me-5" href="#" role="button">Buat event baru <i class="bi bi-plus-circle"></i></button>
     </div>
 
     <div class="mt-5">

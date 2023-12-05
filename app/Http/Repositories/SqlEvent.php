@@ -43,4 +43,13 @@ class SqlEvent{
         ->get();
         return $results;
     }
+
+    public function getEventInGroup(string $groupId){
+        $results = DB::table('events')
+        ->select('e_name','e_place', 'e_date', 'e_image', 'g_name', 'e_date')
+        ->join('groups', 'events.Group_g_uuid', '=', 'groups.g_id')
+        ->where('Group_g_uuid', $groupId)
+        ->get();
+        return $results;
+    }
 }

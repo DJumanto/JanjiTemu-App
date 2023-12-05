@@ -46,7 +46,7 @@
     <footer class="footer text-white text-center p-5" style="background-color: #454681; height: auto; width: 100%;">
         <div class="footerContent">
             <div class="d-flex-row p-3">
-                <p>Buat grup JanjiTemu Anda sekarang <a href="{{ route('group.getcreate') }}" class="btn btn-outline-light" style="color: white; font-weight: 600; transition: background-color 0.3s, color 0.3s; border-width: 3px;">Mulai buat grup</a>
+                <p>Buat grup JanjiTemu Anda sekarang <a href="{{ route('group.getcreate') }}" class="btn btn-outline-light link-underline link-underline-opacity-0" style="color: white; font-weight: 600; transition: background-color 0.3s, color 0.3s; border-width: 3px;">Mulai buat grup</a>
                 </p>
             </div>
             <div>

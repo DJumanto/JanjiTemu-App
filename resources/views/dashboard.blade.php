@@ -78,7 +78,7 @@
     <br><br>
 
     <div class="d-grid d-md-flex mt-3">
-        <a class="btn btn-primary btn-lg link-underline link-underline-opacity-0" style="background-color:#7879DF" href="{{ route('group.getcreate') }}" role="button">Buat grup baru <i class="bi bi-plus-circle"></i></a>
+        <button class="btn btn-primary btn-lg custom-btn" href="{{ route('group.getcreate') }}" role="button">Buat grup baru <i class="bi bi-plus-circle"></i></button>
     </div>
 
     <br>

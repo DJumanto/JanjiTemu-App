@@ -29,6 +29,11 @@
         </form>
     </div>
 
+    <!-- button to create new event -->
+    <div class="d-grid d-md-flex mt-3 justify-content-end">
+        <button class="btn btn-primary btn-lg custom-btn me-5" href="#" role="button">Buat event baru <i class="bi bi-plus-circle"></i></button>
+    </div>
+
     <div class="mt-5">
         <div class="row">
             <div class="col-8">
@@ -81,6 +86,7 @@
                             <th scope="col">#</th>
                             <th scope="col">Nama</th>
                             <th scope="col">Role</th>
+                            <th scope="col">Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -92,6 +98,11 @@
                             <th scope="row">{{ $counter }}</th>
                             <td>{{ $member->first_name.' '.$member->last_name }}</td>
                             <td>{{ $member->role }}</td>
+                            <td>
+                                <button class="btn btn-danger btn-sm" href="#" role="button">Set To Admin</button>
+                                <button class="btn btn-success btn-sm" href="#" role="button">Set To Moderator</button>
+                                <button class="btn btn-primary btn-sm" href="#" role="button">Set To Member</button>
+                            </td>
                         </tr>
                         @php
                         $counter++;
@@ -123,7 +134,7 @@
                                     <button href="#" class="btn btn-primary" style="color:white;">Join Event</button>
                                     @else
                                     <button href="#" class="btn btn-primary" style="color:white;">Edit Event</button>
-                                    <button href="#" class="btn btn-danger" style="color:white">Delete Event</button>
+                                    <button href="#" class="btn btn-danger" style="color:white">Hapus Event</button>
                                     @endif
                                 </div>
                             </div>
@@ -131,6 +142,55 @@
                     </div>
                 </div>
                 @endforeach
+            </div>
+            <!-- Modal for Editing Event-->
+            <div class="modal fade" id="editEvent" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-scrollable">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="staticBackdropLabel">Edit Event</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal">
+                                <i class="bi bi-x-lg"></i>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form action="{{ route('event.store') }}" method="post" enctype="multipart/form-data">
+                                @csrf
+                                <div class="mb-3">
+                                    <label for="e_name" class="form-label">Nama Event</label>
+                                    <input type="text" class="form-control rounded custom-border" id="e_name" name="e_name" required>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="e_description" class="form-label">Deskripsi Event</label>
+                                    <textarea class="form-control" id="e_description" name="e_description" rows="4" required></textarea>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="e_place" class="form-label">Tempat atau Lokasi Event</label>
+                                    <input type="text" class="form-control rounded custom-border" id="e_place" name="e_place" required>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="e_image" class="form-label">Poster Event</label>
+                                    <input type="file" class="form-control rounded custom-border custom-height" id="e_image" name="e_image" accept="image/*" required>
+
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="e_date" class="form-label">Tanggal Pelaksanaan Event</label>
+                                    <input type="date" class="form-control rounded custom-border" id="e_date" name="e_date" required>
+                                </div>
+                                <div class="d-grid gap-2 col-6 mx-auto">
+                                    <button type="submit" class="btn btn-primary edit-btn">Simpan Perubahan</button>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary mod-btn-exit" data-bs-dismiss="modal">Batal</button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <br><br><br><br>

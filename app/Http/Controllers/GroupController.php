@@ -83,14 +83,15 @@ class GroupController extends Controller
     }
 
     //Get group by id and show it's group's master
-    public function GetGroupById(string $id,
-    GetGroupByIdService $getGroupByIdService, 
-    GetUserInGroupByRoleService $getUserInGroupByRoleService, 
-    GetGroupTotalEventService $getGroupTotalEventService, 
-    GetGroupMemberService $getGroupMemberService,
-    GetEventInGroupService $getEventInGroupService,
-    GetGroupPermisionService $getGroupPermisionService)
-    {
+    public function GetGroupById(
+        string $id,
+        GetGroupByIdService $getGroupByIdService,
+        GetUserInGroupByRoleService $getUserInGroupByRoleService,
+        GetGroupTotalEventService $getGroupTotalEventService,
+        GetGroupMemberService $getGroupMemberService,
+        GetEventInGroupService $getEventInGroupService,
+        GetGroupPermisionService $getGroupPermisionService
+    ) {
         $results = $getGroupByIdService->execute($id);
         // if(isEmpty($results)){
         //     return view('groupdetail', ['results' => $results]);

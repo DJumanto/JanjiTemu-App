@@ -21,7 +21,7 @@
         <div class="col">
             <h3 class="h3"><strong>{{ $results->g_name }}</strong></h3>
             <p class="h6 mt-3 text-body-tertiary"><i class="bi bi-people"></i> {{ $results->g_users }}</p>
-            <p class="h6 mt-3 text-body-tertiary"><i class="bi bi-person-check"></i> Event Host <b>{{ $group_master->first_name.' '.$group_master->last_name }}</b></p>
+            <p class="h6 mt-3 text-body-tertiary"><i class="bi bi-person-check"></i> Group Owner <b>{{ $group_master->first_name.' '.$group_master->last_name }}</b></p>
         </div>
     </div>
 
@@ -76,59 +76,23 @@
                         <tr>
                             <th scope="col">#</th>
                             <th scope="col">Nama</th>
-                            <th scope="col">Email</th>
                             <th scope="col">Role</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Ahmad Djumiran</td>
-                            <td>ahmadju@maju.com</td>
-                            <td>member</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Mari Yadi</td>
-                            <td>mariyadi@test.com</td>
-                            <td>member</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>Ahmad Baihaqi</td>
-                            <td>ahmadbai@test.com</td>
-                            <td>member</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">4</th>
-                            <td>Daffa Hurra</td>
-                            <td>dafhurra@test.com</td>
-                            <td>member</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">5</th>
-                            <td>Syukra Radjiman</td>
-                            <td>syukradji@maju.com</td>
-                            <td>member</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">6</th>
-                            <td>Akmal Anom</td>
-                            <td>akmalanom@gmail.com</td>
-                            <td>member</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">7</th>
-                            <td>tester</td>
-                            <td>tester@test.com</td>
-                            <td>member</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">8</th>
-                            <td>tester2</td>
-                            <td>tester2@test.com</td>
-                            <td>member</td>
-                        </tr>
+                        @php
+                            $counter = 1;
+                        @endphp
+                        @foreach($members as $member)
+                                <tr>
+                                    <th scope="row">{{ $counter }}</th>
+                                    <td>{{ $member->first_name.' '.$member->last_name }}</td>
+                                    <td>{{ $member->role }}</td>
+                                </tr>
+                                @php
+                                    $counter++;
+                                @endphp
+                        @endforeach
                     </tbody>
                 </table>
             </div>

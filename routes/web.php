@@ -21,8 +21,8 @@ use App\Http\Controllers\EventController;
 Route::get('/', [GetEventController::class, 'GetSomeEventLists']);
 Route::get('/group', [GroupController::class, 'GetGroup'])->name('group.getgroup');
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
-// // Route untuk keperluan pengembangan FE Group Detail
-// Route::get('/group/fegd', [GroupController::class, 'ShowGroupDetailTest'])->name('group.testgd');
+// Route untuk keperluan pengembangan FE Group Detail
+Route::get('/group/fegd', [GroupController::class, 'ShowGroupDetailTest'])->name('group.testgd');
 //todo 
 //add get event by group id
 //add change routing to {{group_id}}

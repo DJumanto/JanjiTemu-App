@@ -81,14 +81,15 @@ class GroupController extends Controller
     }
 
     //Get group by id and show it's group's master
-    public function GetGroupById(string $id,
-    GetGroupByIdService $getGroupByIdService, 
-    GetUserInGroupByRoleService $getUserInGroupByRoleService, 
-    GetGroupTotalEventService $getGroupTotalEventService, 
-    GetGroupMemberService $getGroupMemberService,
-    GetEventInGroupService $getEventInGroupService,
-    GetGroupPermisionService $getGroupPermisionService)
-    {
+    public function GetGroupById(
+        string $id,
+        GetGroupByIdService $getGroupByIdService,
+        GetUserInGroupByRoleService $getUserInGroupByRoleService,
+        GetGroupTotalEventService $getGroupTotalEventService,
+        GetGroupMemberService $getGroupMemberService,
+        GetEventInGroupService $getEventInGroupService,
+        GetGroupPermisionService $getGroupPermisionService
+    ) {
         $results = $getGroupByIdService->execute($id);
         // if(isEmpty($results)){
         //     return view('groupdetail', ['results' => $results]);
@@ -114,9 +115,9 @@ class GroupController extends Controller
         return redirect()->route('group.getgroupbyid', ['group_id' => $id, 'info' => $info]);
     }
 
-    // // Fungsi selama Pengembangan FE Group Detail
-    // public function ShowGroupDetailTest()
-    // {
-    //     return view('groupdetail');
-    // }
+    // Fungsi selama Pengembangan FE Group Detail
+    public function ShowGroupDetailTest()
+    {
+        return view('groupdetail');
+    }
 }

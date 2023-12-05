@@ -32,7 +32,7 @@
         </div>
         <div class="col">
             <div class="text-center mt-5">
-                <img src="/img/friends-joyce-no.png" alt="">
+                <img src="/img/friends-joyce-no.png">
             </div>
         </div>
     </div>

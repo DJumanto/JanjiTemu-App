@@ -11,6 +11,11 @@ class AddUserGroupService{
     }
 
     public function execute(UserGroup $userGroup){
+        $userCheck = $this->sqlUserGroup->checkUserInGroup($userGroup->getUserGroupUserId(), $userGroup->getUserGroupGroupId());
+        if(count($userCheck) > 0){
+            return "User telah bergabung dengan grup";
+        }
         $this->sqlUserGroup->persist($userGroup);
+        return "User berhasil bergabung dengan grup";
     }
 }

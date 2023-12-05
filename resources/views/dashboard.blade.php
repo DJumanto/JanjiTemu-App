@@ -75,8 +75,13 @@
         </div>
     </div>
 
+    <br><br>
 
-    <br><br><br><br>
+    <div class="d-grid d-md-flex mt-3">
+        <a class="btn btn-primary btn-lg link-underline link-underline-opacity-0" style="background-color:#7879DF" href="{{ route('group.getcreate') }}" role="button">Buat grup baru <i class="bi bi-plus-circle"></i></a>
+    </div>
+
+    <br>
     <!-- Part Your Group -->
     <div class="row">
         <div class="col-md-9 ms-5 mt-5">
@@ -202,5 +207,6 @@
             </div>
         </div>
     </div>
+
     <br><br><br>
 </x-app-layout>

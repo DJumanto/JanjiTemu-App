@@ -120,7 +120,7 @@
 
         <!-- Part Content How it works -->
         <div class="d-flex flex-row ms-4 mt-4 p-5">
-            <a href="#" class="btn btn-outline-secondary ms-5">
+            <a href="{{ route('login') }}" class="btn btn-outline-secondary ms-5">
                 <div class="col">
                     <h1><i class="bi bi-search"></i></h1>
                 </div>
@@ -129,7 +129,7 @@
                     <p>Cari tahu pelaksanaan suatu event yang Anda minati, serta siapa yang menyelenggarakannya.</p>
                 </div>
             </a>
-            <a href="#" class="btn btn-outline-secondary ms-5">
+            <a href="{{ route('login') }}" class="btn btn-outline-secondary ms-5">
                 <div class="col">
                     <h1><i class="bi bi-plus-lg"></i></h1>
                 </div>

@@ -1,39 +1,39 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Create Group</title>
-</head>
-<body>
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">Create Group</div>
+<x-app-layout>
+    <x-slot name="header">
+        <h1 class="h3">Ayo buat grup baru milikmu!</h1>
+    </x-slot>
 
-                    <div class="card-body">
-                        <form method="POST" action="{{ route('group.store') }}">
-                            @csrf
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card p-1">
+                <div class="card-header">Data grup</div>
 
-                            <div class="form-group">
-                                <label for="name">Group Name:</label>
-                                <input type="text" name="name" id="name" class="form-control" required>
-                            </div>
+                <div class="card-body">
+                    <form method="POST" action="{{ route('group.store') }}">
+                        @csrf
 
-                            <div class="form-group">
-                                <label for="description">Group Description:</label>
-                                <textarea name="description" id="description" class="form-control" required></textarea>
-                            </div>
+                        <div class="form-group">
+                            <label for="name" class="mb-3">Nama Grup :</label>
+                            <input type="text" name="name" id="name" class="form-control rounded" required>
+                        </div>
 
-                            <button type="submit" class="btn btn-primary">Create Group</button>
-                        </form>
-                    </div>
+                        <div class="form-group mt-3 mb-3">
+                            <label for="description" class="mb-3">Deskripsi Grup :</label>
+                            <textarea name="description" id="description" class="form-control" required></textarea>
+                        </div>
+                        <div class="d-grid gap-2 col-6 mx-auto">
+                            <button type="submit" class="btn btn-primary mt-3 custom-btn">
+                                Buat Grup
+                            </button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
+        <div class="col">
+            <div class="text-center mt-5">
+                <img src="/img/friends-joyce-no.png">
+            </div>
+        </div>
     </div>
-</body>
-</html>
-
+</x-app-layout>

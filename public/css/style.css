@@ -12,3 +12,14 @@ a {
 a:hover {
     text-decoration: underline; /* Untuk menambahkan garis bawah saat dihover */
 }
+
+.custom-btn {
+    background-color: #7879DF;
+    color: white;
+}
+
+.custom-btn:hover {
+    background-color: white;
+    color: #7879DF;
+    font-weight: 500;
+}

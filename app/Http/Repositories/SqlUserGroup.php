@@ -66,4 +66,12 @@ class SqlUserGroup{
         ->get();
         return $results;
     }
+
+    public function setPrivilege(string $groupId, int $userId, int $roleId){
+        $results = DB::table('user_groups')
+        ->where('Group_g_id', $groupId)
+        ->where('User_u_id', $userId)
+        ->update(['Group_Role_gr_id' => $roleId]);
+        return $results;
+    }
 }

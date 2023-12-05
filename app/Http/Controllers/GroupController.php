@@ -7,14 +7,16 @@ use Illuminate\Http\Request;
 use App\Models\Group;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
+use App\Http\Services\UserGroupServices\AddUserGroupService;
+use App\Http\Services\UserGroupServices\GetUserInGroupByRoleService;
+use App\Http\Services\UserGroupServices\SetPrivilegeService;
+use App\Http\Services\UserGroupServices\GetGroupMemberService;
+use App\Http\Services\UserGroupServices\ChangeGroupAdminService;
 use App\Http\Services\GroupServices\GetGroupService;
 use App\Http\Services\GroupServices\CreateGroupService;
 use App\Http\Services\GroupServices\SearchGroupService;
-use App\Http\Services\UserGroupServices\AddUserGroupService;
-use App\Http\Services\UserGroupServices\GetUserInGroupByRoleService;
 use App\Http\Services\GroupServices\GetGroupByIdService;
 use App\Http\Services\GroupServices\GetGroupTotalEventService;
-use App\Http\Services\UserGroupServices\GetGroupMemberService;
 use App\Http\Services\EventServices\GetEventInGroupService;
 
 use App\Models\UserGroup;
@@ -114,9 +116,72 @@ class GroupController extends Controller
         return redirect()->route('group.getgroupbyid', ['group_id' => $id, 'info' => $info]);
     }
 
-    // // Fungsi selama Pengembangan FE Group Detail
-    // public function ShowGroupDetailTest()
-    // {
-    //     return view('groupdetail');
-    // }
+    public function SetMemberPrivilege(string $group_id, Request $request, SetPrivilegeService $setPrivilegeService, GetGroupPermisionService $getGroupPermisionService)
+    {
+        $request->validate([
+            'user_id' => 'integer|required',
+        ]);
+        $adminId = Auth::user()->id;
+        $permission = $getGroupPermisionService->execute($adminId, $group_id);
+        if($permission->role == 1){
+            DB::beginTransaction();
+            try{
+                $user_id = $request->input('user_id');
+                $setPrivilegeService->execute($group_id, $user_id, 2);
+                DB::commit();
+                return redirect()->route('group.getgroupbyid', ['group_id' => $group_id, 'info' => 'sukses menjadikan hak member sebagai moderator']);
+            }catch(\Exception $e){
+                DB::rollback();
+                return redirect()->route('group.getgroupbyid', ['group_id' => $group_id, 'info' => 'gagal menaikkan hak member']);
+            }
+        }else{
+            return redirect()->route('group.getgroupbyid', ['group_id' => $group_id, 'info' => 'anda bukan admin grup']);
+        }
+    }
+
+    public function StepDownMemberPrivilege(string $group_id, Request $request, SetPrivilegeService $setPrivilegeService, GetGroupPermisionService $getGroupPermisionService)
+    {
+        $request->validate([
+            'user_id' => 'integer|required',
+        ]);
+        $adminId = Auth::user()->id;
+        $permission = $getGroupPermisionService->execute($adminId, $group_id);
+        if($permission->role == 1){
+            DB::beginTransaction();
+            try{
+                $user_id = $request->input('user_id');
+                $setPrivilegeService->execute($group_id, $user_id, 3);
+                DB::commit();
+                return redirect()->route('group.getgroupbyid', ['group_id' => $group_id, 'info' => 'sukses menurunkan hak moderator sebagai member']);
+            }catch(\Exception $e){
+                DB::rollback();
+                return redirect()->route('group.getgroupbyid', ['group_id' => $group_id, 'info' => 'gagal menurunkan hak moderator']);
+            }
+        }else{
+            return redirect()->route('group.getgroupbyid', ['group_id' => $group_id, 'info' => 'anda bukan admin grup']);
+        }
+    }
+
+    public function ChangeGroupAdmin(string $group_id, Request $request, ChangeGroupAdminService $changeGroupAdminService, GetGroupPermisionService $getGroupPermisionService)
+    {
+        $request->validate([
+            'user_id' => 'integer|required',
+        ]);
+        $adminId = Auth::user()->id;
+        $permission = $getGroupPermisionService->execute($adminId, $group_id);
+        if($permission->role == 1){
+            DB::beginTransaction();
+            try{
+                $user_id = $request->input('user_id');
+                $changeGroupAdminService->execute($group_id, $user_id, $adminId);
+                DB::commit();
+                return redirect()->route('group.getgroupbyid', ['group_id' => $group_id, 'info' => 'Admin grup telah berganti']);
+            }catch(\Exception $e){
+                DB::rollback();
+                return redirect()->route('group.getgroupbyid', ['group_id' => $group_id, 'info' => 'gagal menaikkan hak member']);
+            }
+        }else{
+            return redirect()->route('group.getgroupbyid', ['group_id' => $group_id, 'info' => 'anda bukan admin grup']);
+        }
+    }
 }

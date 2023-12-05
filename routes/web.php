@@ -34,15 +34,15 @@ Route::middleware('auth')->group(function () {
             Route::get('/', [EventController::class, 'GetEventInGroup'])->name('event.geteventbygroup');
             Route::get('/{event_id}', [EventController::class, 'GetEventDetail'])->name('event.geteventdetail');
             Route::post('/{event_id}/join', [EventController::class, 'JoinEvent'])->name('event.joinevent');
-            Route::get('/{event_id}/comment', [EventController::class, 'getEventComment'])->name('event.getcomment');
-            Route::post('/{event_id}/comment', [EventController::class, 'addEventCommentary'])->name('event.postcomment');
+            Route::get('/{event_id}/comment', [EventController::class, 'GetEventComment'])->name('event.getcomment');
+            Route::post('/{event_id}/comment', [EventController::class, 'AddEventCommentary'])->name('event.postcomment');
             Route::get('/create', [EventController::class, 'index'])->name('event.index'); // add event to group
             Route::post('/create', [EventController::class, 'CreateEvent'])->name('event.store'); // add event to group
             Route::patch('/update/{event_id}', [EventController::class, 'UpdateEvent'])->name('event.update'); // update event
             Route::delete('/delete/{event_id}', [EventController::class, 'DeleteEvent'])->name('event.delete'); // delete event
         });
     });
-    Route::get('/event', [EventController::class, 'FindEvent'])->name('event.search'); //search event
+    Route::get('/event', [EventController::class, 'SearchEvent'])->name('event.search'); //search event
     Route::get('dashboard/event/', [EventController::class, 'GetEventByUserID'])->name('event.getevent'); //get event by user id
     Route::get('/creategroup', [GroupController::class, 'index'])->name('group.getcreate');
     Route::post('/creategroup', [GroupController::class, 'CreateGroup'])->name('group.store');

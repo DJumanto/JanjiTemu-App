@@ -161,7 +161,7 @@ class EventController extends Controller
         return redirect()->route('index',['status'=>$info]);
     }
 
-    public function addEventCommentary(Request $request, string $event_id, CreateCommentService $createCommentService)
+    public function AddEventCommentary(Request $request, string $event_id, CreateCommentService $createCommentService)
     {
         $request->validate([
             'commentary' => 'string|required'
@@ -180,7 +180,7 @@ class EventController extends Controller
         return "Sukses menambahkan komentar";
     }
 
-    public function getEventComment(string $event_id, GetCommentaryService $getCommentaryService){
+    public function GetEventComment(string $event_id, GetCommentaryService $getCommentaryService){
         $comments = $getCommentaryService->execute($event_id);
         return $comments;
     }

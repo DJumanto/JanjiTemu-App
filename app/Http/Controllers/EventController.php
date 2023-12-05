@@ -14,6 +14,8 @@ use App\Http\Services\EventServices\GetSomeEventService;
 use App\Http\Services\EventServices\FindEventService;
 use App\Http\Services\EventServices\GetEventByUserIDService;
 use App\Http\Services\EventServices\JoinEventService;
+use App\Http\Services\CommentaryServices\CreateCommentService;
+use App\Http\Services\CommentaryServices\GetCommentaryService;
 class EventController extends Controller
 {
     
@@ -148,7 +150,38 @@ class EventController extends Controller
 
     public function joinEvent(string $event_id, JoinEventService $joinEventService){
         $user_id = Auth::user()->id;
-        $info = $joinEventService->execute($user_id, $event_id);
+        DB::beginTransaction();
+        try{
+            $info = $joinEventService->execute($user_id, $event_id); 
+        }catch(\Exception $e)
+        {
+            DB::rollback();
+        }
+        DB::commit();
         return redirect()->route('index',['status'=>$info]);
+    }
+
+    public function addEventCommentary(Request $request, string $event_id, CreateCommentService $createCommentService)
+    {
+        $request->validate([
+            'commentary' => 'string|required'
+        ]);
+        $userId = Auth::user()->id;
+        DB::beginTransaction();
+        try{
+            $createCommentService->execute($event_id, $userId, $request->input('commentary'));
+        }
+        catch(\Exception $e)
+        {
+            DB::rollback();
+            return "Tidak bisa mengirim komentar";
+        }
+        DB::commit();
+        return "Sukses menambahkan komentar";
+    }
+
+    public function getEventComment(string $event_id, GetCommentaryService $getCommentaryService){
+        $comments = $getCommentaryService->execute($event_id);
+        return $comments;
     }
 }

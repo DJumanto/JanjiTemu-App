@@ -12,9 +12,12 @@ use App\Http\Services\GroupServices\SearchGroupService;
 use App\Http\Services\UserGroupServices\AddUserGroupService;
 use App\Http\Services\UserGroupServices\GetUserInGroupByRoleService;
 use App\Http\Services\GroupServices\GetGroupByIdService;
+use App\Http\Services\GroupServices\GetGroupTotalEventService;
 use App\Models\UserGroup;
 use Throwable;
 use Illuminate\Support\Facades\Auth;
+
+use function PHPUnit\Framework\isEmpty;
 
 class GroupController extends Controller
 {
@@ -71,12 +74,15 @@ class GroupController extends Controller
     }
 
     //Get group by id and show it's group's master
-    public function GetGroupById(Request $request, GetGroupByIdService $getGroupByIdService, GetUserInGroupByRoleService $getUserInGroupByRoleService)
+    public function GetGroupById(string $id, Request $request, GetGroupByIdService $getGroupByIdService, GetUserInGroupByRoleService $getUserInGroupByRoleService, GetGroupTotalEventService $getGroupTotalEventService)
     {
-        $groupId = $request->input('groupid');
-        $results = $getGroupByIdService->execute($groupId);
-        $results['master'] = $getUserInGroupByRoleService->execute(1, $groupId);
-        return view('groupdetail', ['results' => $results]);
+        $results = $getGroupByIdService->execute($id);
+        // if(isEmpty($results)){
+        //     return view('groupdetail', ['results' => $results]);
+        // }
+        $results->total_event = $getGroupTotalEventService->execute($id);
+        $group_master = $getUserInGroupByRoleService->execute(1, $id)[0];
+        return view('groupdetail', ['results' => $results, 'group_master' => $group_master]);
     }
 
     // // Fungsi selama Pengembangan FE Group Detail

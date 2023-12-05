@@ -30,7 +30,14 @@ class SqlGroup
     public function getGroupById(string $id)
     {
         $group = DB::table('groups')->where('g_id', '=', $id)->get();
-        return $this->returnRow([$group])[0];
+        return $group[0];
+    }
+
+    public function getGroupTotalEvent(string $id)
+    {
+        return DB::table('events')
+        ->where('Group_g_uuid', '=', $id)
+        ->count();
     }
 
     public function returnRow(array $row)

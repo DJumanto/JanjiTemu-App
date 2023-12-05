@@ -19,9 +19,9 @@
             </figure>
         </div>
         <div class="col">
-            <h3 class="h3"><strong>[Nama Grup]</strong></h3>
-            <p class="h6 mt-3 text-body-tertiary"><i class="bi bi-people"></i> 100 orang</p>
-            <p class="h6 mt-3 text-body-tertiary"><i class="bi bi-person-check"></i> Dibuat oleh <b>Tester Bro</b></p>
+            <h3 class="h3"><strong>{{ $results->g_name }}</strong></h3>
+            <p class="h6 mt-3 text-body-tertiary"><i class="bi bi-people"></i> {{ $results->g_users }}</p>
+            <p class="h6 mt-3 text-body-tertiary"><i class="bi bi-person-check"></i> Event Host <b>{{ $group_master->first_name.' '.$group_master->last_name }}</b></p>
         </div>
     </div>
 
@@ -30,7 +30,7 @@
             <div class="col-8">
                 <div id="desc">
                     <h4 class="h4">Deskripsi Grup</h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur culpa nihil animi cumque illo. Ducimus ut mollitia cum nostrum facilis tempore, culpa eveniet totam deserunt, fugit optio odio blanditiis aut! Delectus ad quasi aliquam id recusandae quidem fugiat. Ut veniam consectetur ipsum quia vel. Perferendis assumenda laborum incidunt, dolor nulla fugit ipsa architecto aperiam commodi mollitia animi tenetur reprehenderit laboriosam rem cum, dignissimos ex sunt eos, quam libero distinctio possimus. Sed odio unde nam similique, eaque corporis accusamus itaque alias a quam labore eius laborum fugiat, provident quas sit asperiores nulla cupiditate deserunt? Doloremque, odio quidem quae asperiores mollitia consequuntur?</p>
+                    <p>{{ $results->g_description }}</p>
                 </div>
             </div>
             <div class="col">
@@ -41,8 +41,8 @@
                     </div>
                     <div class="card-body">
                         <div class="ms-5">
-                            <h3 class="card-title ms-4"><strong>Tester Bro</strong></h3>
-                            <p class="card-text ms-4"><em>[Role, ex: Organizer]</em></p>
+                            <h3 class="card-title ms-4"><strong>{{ $group_master->first_name.' '.$group_master->last_name }}</strong></h3>
+                            <p class="card-text ms-4"><em>Group Master</em></p>
                         </div>
                     </div>
                 </div>
@@ -52,7 +52,7 @@
                     </div>
                     <div class="card-body">
                         <div class="ms-5">
-                            <h3 class="card-title ms-4"><i class="bi bi-people"></i> <em>100 Orang</em></h3>
+                            <h3 class="card-title ms-4"><i class="bi bi-people"></i> <em>{{ $results->g_users }}</em></h3>
                         </div>
                     </div>
                     <div class="position-relative ms-2">
@@ -60,7 +60,7 @@
                     </div>
                     <div class="card-body">
                         <div class="ms-5">
-                            <h3 class="card-title ms-4"><i class="bi bi-calendar4-event"></i> <em>14 Event</em></h3>
+                            <h3 class="card-title ms-4"><i class="bi bi-calendar4-event"></i> <em>{{ $results->total_event }}</em></h3>
                         </div>
                     </div>
                 </div>

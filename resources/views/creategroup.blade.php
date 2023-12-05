@@ -6,7 +6,7 @@
     <div class="row">
         <div class="col-md-8">
             <div class="card p-1">
-                <div class="card-header">Buat grup</div>
+                <div class="card-header">Data grup</div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('group.store') }}">

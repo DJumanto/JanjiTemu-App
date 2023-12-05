@@ -9,4 +9,11 @@ class SqlUser{
         ->where('id', $id)->first();
         return $userName;
     }
+
+    public function getEmailByID(int $id){
+        $email = DB::table('users')
+        ->select('email')
+        ->where('id', $id)->first();
+        return $email;
+    }
 }

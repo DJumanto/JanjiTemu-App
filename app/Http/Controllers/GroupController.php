@@ -115,14 +115,14 @@ class GroupController extends Controller
         return redirect()->route('group.getgroupbyid', ['group_id' => $id, 'info' => $info]);
     }
 
-    // Fungsi selama Pengembangan FE Group Detail
-    public function ShowGroupDetailTest()
-    {
-        return view('groupdetail');
-    }
-    // Fungsi selama Pengembangan FE Create Event
-    public function ShowCreateEventTest()
-    {
-        return view('createevent');
-    }
+    // // Fungsi selama Pengembangan FE Group Detail
+    // public function ShowGroupDetailTest()
+    // {
+    //     return view('groupdetail');
+    // }
+    // // Fungsi selama Pengembangan FE Create Event
+    // public function ShowCreateEventTest()
+    // {
+    //     return view('createevent');
+    // }
 }

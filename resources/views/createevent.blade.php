@@ -41,8 +41,9 @@
                                 <label for="e_date" class="form-label">Tanggal Pelaksanaan Event</label>
                                 <input type="date" class="form-control rounded custom-border" id="e_date" name="e_date" required>
                             </div>
-
-                            <button type="submit" class="btn btn-primary custom-btn">Create Event</button>
+                            <div class="d-grid gap-2 col-6 mx-auto">
+                                <button type="submit" class="btn btn-primary custom-btn">Create Event</button>
+                            </div>
                         </form>
                     </div>
                 </div>

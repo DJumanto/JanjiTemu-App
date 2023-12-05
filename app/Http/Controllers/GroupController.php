@@ -79,9 +79,9 @@ class GroupController extends Controller
         return view('groupdetail', ['results' => $results]);
     }
 
-    // Fungsi selama Pengembangan FE Group Detail
-    public function ShowGroupDetailTest()
-    {
-        return view('groupdetail');
-    }
+    // // Fungsi selama Pengembangan FE Group Detail
+    // public function ShowGroupDetailTest()
+    // {
+    //     return view('groupdetail');
+    // }
 }

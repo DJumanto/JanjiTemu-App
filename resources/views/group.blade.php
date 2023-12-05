@@ -73,8 +73,4 @@
     </div>
 
     <br><br><br>
-    <!-- Test Dev FE Group Detail -->
-    <a class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="{{ route('group.testgd') }}" style="color:#7879DF; font-weight:600;">
-        <h6>Test FE Group Detail</h6>
-    </a>
 </x-app-layout>

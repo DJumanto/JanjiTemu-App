@@ -85,17 +85,17 @@
                     </thead>
                     <tbody>
                         @php
-                            $counter = 1;
+                        $counter = 1;
                         @endphp
                         @foreach($members as $member)
-                                <tr>
-                                    <th scope="row">{{ $counter }}</th>
-                                    <td>{{ $member->first_name.' '.$member->last_name }}</td>
-                                    <td>{{ $member->role }}</td>
-                                </tr>
-                                @php
-                                    $counter++;
-                                @endphp
+                        <tr>
+                            <th scope="row">{{ $counter }}</th>
+                            <td>{{ $member->first_name.' '.$member->last_name }}</td>
+                            <td>{{ $member->role }}</td>
+                        </tr>
+                        @php
+                        $counter++;
+                        @endphp
                         @endforeach
                     </tbody>
                 </table>
@@ -107,29 +107,29 @@
             <!-- Part Event of The Group Card -->
             <div class="grid gap-0 row-gap-3" id="group-event-card">
                 @foreach($events as $event)
-                    <div class="card position-relative" style="width: 100%;">
-                        <div class="row g-0">
-                            <div class="col-md-4">
-                                <img src="{{ str_replace('public', 'storage', $event->e_image) }}" class="card-img-top img-fluid" alt="Event Image">
-                            </div>
-                            <div class="col-md-8">
-                                <div class="card-body">
-                                    <h5 class="card-title"><a class="link-dark link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="#">{{ $event->e_name }}</a></h5>
-                                    <p class="card-text">Hosted by: {{ $event->g_name }}</p>
-                                    <p><i class="bi bi-calendar4-event"></i> {{ \Carbon\Carbon::parse($event->e_date)->format('l, d M Y - H:i A') }}</p>
-                                    <h6><i class="bi bi-ticket-perforated"></i> FREE</h6>
-                                    <div class="position-absolute bottom-0 end-0 mb-3 me-3">
-                                        @if($user_status === 3 || $user_status == null)
-                                            <button href="#" class="btn btn-primary" style="color:white;">Join Event</button>
-                                        @else
-                                            <button href="#" class="btn btn-primary" style="color:white;">Edit Event</button>
-                                            <button href="#" class="btn btn-danger" style="color:white">Delete Event</button>
-                                        @endif
-                                    </div>
+                <div class="card position-relative" style="width: 100%;">
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                            <img src="{{ str_replace('public', 'storage', $event->e_image) }}" class="card-img-top img-fluid" alt="Event Image">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title"><a class="link-dark link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="#">{{ $event->e_name }}</a></h5>
+                                <p class="card-text">Hosted by: {{ $event->g_name }}</p>
+                                <p><i class="bi bi-calendar4-event"></i> {{ \Carbon\Carbon::parse($event->e_date)->format('l, d M Y - H:i A') }}</p>
+                                <h6><i class="bi bi-ticket-perforated"></i> FREE</h6>
+                                <div class="position-absolute bottom-0 end-0 mb-3 me-3">
+                                    @if($user_status === 3 || $user_status == null)
+                                    <button href="#" class="btn btn-primary" style="color:white;">Join Event</button>
+                                    @else
+                                    <button href="#" class="btn btn-primary" style="color:white;">Edit Event</button>
+                                    <button href="#" class="btn btn-danger" style="color:white">Delete Event</button>
+                                    @endif
                                 </div>
                             </div>
                         </div>
                     </div>
+                </div>
                 @endforeach
             </div>
         </div>

@@ -34,6 +34,8 @@ Route::middleware('auth')->group(function () {
             Route::get('/', [EventController::class, 'GetEventInGroup'])->name('event.geteventbygroup');
             Route::get('/{event_id}', [EventController::class, 'GetEventDetail'])->name('event.geteventdetail');
             Route::post('/{event_id}/join', [EventController::class, 'JoinEvent'])->name('event.joinevent');
+            Route::get('/{event_id}/comment', [EventController::class, 'getEventComment'])->name('event.getcomment');
+            Route::post('/{event_id}/comment', [EventController::class, 'addEventCommentary'])->name('event.postcomment');
             Route::get('/create', [EventController::class, 'index'])->name('event.index'); // add event to group
             Route::post('/create', [EventController::class, 'CreateEvent'])->name('event.store'); // add event to group
             Route::patch('/update/{event_id}', [EventController::class, 'UpdateEvent'])->name('event.update'); // update event

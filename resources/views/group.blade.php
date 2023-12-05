@@ -72,5 +72,7 @@
         </div>
     </div>
 
+    <a class="mt-3" href="{{ route('group.testgd') }}">test group detail</a>
+
     <br><br><br>
 </x-app-layout>

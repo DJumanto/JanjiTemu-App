@@ -34,3 +34,32 @@ a:hover {
 .custom-height {
     height: 30px; /* Sesuaikan nilai tinggi sesuai kebutuhan Anda */
 }
+
+
+.mod-btn-exit {
+    background-color: rgb(198, 17, 17);
+    border-width: 2px;
+    border-color: rgb(198, 17, 17);
+    color: white;
+}
+
+
+.mod-btn-exit:hover {
+    background-color: white;
+    border-width: 3px;
+    border-color: rgb(198, 17, 17);
+    color: rgb(198, 17, 17);
+}
+
+.edit-btn {
+    background-color: forestgreen;
+    color: white;
+    border-color:forestgreen;
+}
+
+.edit-btn:hover {
+    background-color: white;
+    border-width: 3px;
+    border-color: forestgreen;
+    color: forestgreen;
+}

@@ -120,4 +120,9 @@ class GroupController extends Controller
     {
         return view('groupdetail');
     }
+    // Fungsi selama Pengembangan FE Create Event
+    public function ShowCreateEventTest()
+    {
+        return view('createevent');
+    }
 }

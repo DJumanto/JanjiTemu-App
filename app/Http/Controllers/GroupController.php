@@ -78,4 +78,10 @@ class GroupController extends Controller
         $results['master'] = $getUserInGroupByRoleService->execute(1, $groupId);
         return view('groupdetail', ['results' => $results]);
     }
+
+    // // Fungsi selama Pengembangan FE Group Detail
+    // public function ShowGroupDetailTest()
+    // {
+    //     return view('groupdetail');
+    // }
 }

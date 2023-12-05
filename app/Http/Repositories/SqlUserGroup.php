@@ -41,13 +41,22 @@ class SqlUserGroup{
 
     public function getPermissionByUserId(int $userID, string $groupID){
         $results = DB::table('user_groups')
-        ->select('ug_id','Group_Role_gr_id')
+        ->select('ug_id','Group_Role_gr_id as role')
         ->where('User_u_id', $userID)
         ->where('Group_g_id', $groupID)
         ->first();
         return $results;
     }
 
+
+    public function checkUserInGroup(int $userID, string $groupID){
+        $results = DB::table('user_groups')
+        ->select('ug_id')
+        ->where('User_u_id', $userID)
+        ->where('Group_g_id', $groupID)
+        ->get();
+        return $results;
+    }
     public function getMemberInGroup(string $groupId){
         $results = DB::table('user_groups')
         ->select('u.first_name', 'u.last_name', 'gr.gr_position as role')

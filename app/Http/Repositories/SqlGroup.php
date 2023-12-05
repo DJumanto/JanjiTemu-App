@@ -3,6 +3,7 @@
 namespace App\Http\Repositories;
 use App\Models\Group;
 use Illuminate\Support\Facades\DB;
+use App\Models\UserGroup;
 
 class SqlGroup
 {
@@ -33,11 +34,26 @@ class SqlGroup
         return $group[0];
     }
 
+    public function getGroupByUserId(int $userID)
+    {
+        $group = DB::table('groups')
+        ->select('g_id','g_name')
+        ->join('user_groups', 'groups.g_id', '=', 'user_groups.Group_g_id')
+        ->where('User_u_id', $userID)
+        ->get();
+        return $group;
+    }
+
     public function getGroupTotalEvent(string $id)
     {
         return DB::table('events')
         ->where('Group_g_uuid', '=', $id)
         ->count();
+    }
+
+    public function leaveGroup(int $id, string $groupID)
+    {
+        DB::table('user_groups')->where('User_u_id', $id)->where('Group_g_id', $groupID)->delete();
     }
 
     public function returnRow(array $row)

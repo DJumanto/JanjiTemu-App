@@ -27,18 +27,22 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['au
 //add get event by group id
 //add change routing to {{group_id}}
 Route::middleware('auth')->group(function () {
-    Route::get('/creategroup', function () {
-        return view('creategroup');
-    })->name('group.getcreate');
     Route::prefix('/group/{group_id}')->group(function () {
         Route::get('/', [GroupController::class, 'GetGroupById'])->name('group.getgroupbyid');
-        Route::get('/event/add', [EventController::class, 'index'])->name('event.index'); // add event to group
-        Route::post('/event/add', [EventController::class, 'CreateEvent'])->name('event.store'); // add event to group
-        Route::patch('/event/update/{event_id}', [EventController::class, 'UpdateEvent'])->name('event.update'); // update event
-        Route::delete('/event/delete/{event_id}', [EventController::class, 'DeleteEvent'])->name('event.delete'); // delete event
+        Route::post('/join', [GroupController::class, 'JoinGroup'])->name('group.joingroup');
+        Route::prefix('/event')->group(function () {
+            Route::get('/', [EventController::class, 'GetEventInGroup'])->name('event.geteventbygroup');
+            Route::get('/{event_id}', [EventController::class, 'GetEventDetail'])->name('event.geteventdetail');
+            Route::post('/{event_id}/join', [EventController::class, 'JoinEvent'])->name('event.joinevent');
+            Route::get('/create', [EventController::class, 'index'])->name('event.index'); // add event to group
+            Route::post('/create', [EventController::class, 'CreateEvent'])->name('event.store'); // add event to group
+            Route::patch('/update/{event_id}', [EventController::class, 'UpdateEvent'])->name('event.update'); // update event
+            Route::delete('/delete/{event_id}', [EventController::class, 'DeleteEvent'])->name('event.delete'); // delete event
+        });
     });
     Route::get('/event', [EventController::class, 'FindEvent'])->name('event.search'); //search event
     Route::get('dashboard/event/', [EventController::class, 'GetEventByUserID'])->name('event.getevent'); //get event by user id
+    Route::get('/creategroup', [GroupController::class, 'index'])->name('group.getcreate');
     Route::post('/creategroup', [GroupController::class, 'CreateGroup'])->name('group.store');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

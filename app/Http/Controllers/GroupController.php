@@ -16,15 +16,19 @@ use App\Http\Services\GroupServices\GetGroupByIdService;
 use App\Http\Services\GroupServices\GetGroupTotalEventService;
 use App\Http\Services\UserGroupServices\GetGroupMemberService;
 use App\Http\Services\EventServices\GetEventInGroupService;
+
 use App\Models\UserGroup;
 use Throwable;
 use Illuminate\Support\Facades\Auth;
 
-use function PHPUnit\Framework\isEmpty;
 
 class GroupController extends Controller
 {
     //show group list
+    public function index()
+    {
+        return view('creategroup');
+    }
     public function GetGroup(Request $request, GetGroupService $getGroupService)
     {
         $count = $request->input('count') ?? 10;
@@ -94,7 +98,20 @@ class GroupController extends Controller
         $members = $getGroupMemberService->execute($id);
         $results->total_event = $getGroupTotalEventService->execute($id);
         $group_master = $getUserInGroupByRoleService->execute(1, $id)[0];
-        return view('groupdetail', ['results' => $results, 'group_master' => $group_master, 'members' => $members, 'events' => $events, 'user_status' => $user_status]);
+        return view('groupdetail', ['results' => $results, 'group_master' => $group_master, 'members' => $members, 'events' => $events, 'user_status' => $user_status->role, 'group_id' => $id]);
+    }
+
+    public function JoinGroup(string $id, AddUserGroupService $addUserGroupService)
+    {
+        $userGroupId = Str::uuid();
+        $userGroup = new UserGroup(
+            $userGroupId,
+            Auth::user()->id,
+            $id,
+            3
+        );
+        $info = $addUserGroupService->execute($userGroup);
+        return redirect()->route('group.getgroupbyid', ['group_id' => $id, 'info' => $info]);
     }
 
     // // Fungsi selama Pengembangan FE Group Detail

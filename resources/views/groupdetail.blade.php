@@ -23,6 +23,10 @@
             <p class="h6 mt-3 text-body-tertiary"><i class="bi bi-people"></i> {{ $results->g_users }}</p>
             <p class="h6 mt-3 text-body-tertiary"><i class="bi bi-person-check"></i> Group Owner <b>{{ $group_master->first_name.' '.$group_master->last_name }}</b></p>
         </div>
+        <form method="POST" action="{{ route('group.joingroup', ['group_id' => $group_id]) }}">
+            @csrf
+            <button type="submit" class="btn btn-primary" style="color:white;">Join Group</button>
+        </form>
     </div>
 
     <div class="mt-5">
@@ -115,7 +119,7 @@
                                     <p><i class="bi bi-calendar4-event"></i> {{ \Carbon\Carbon::parse($event->e_date)->format('l, d M Y - H:i A') }}</p>
                                     <h6><i class="bi bi-ticket-perforated"></i> FREE</h6>
                                     <div class="position-absolute bottom-0 end-0 mb-3 me-3">
-                                        @if($user_status == 3 || $user_status == null)
+                                        @if($user_status === 3 || $user_status == null)
                                             <button href="#" class="btn btn-primary" style="color:white;">Join Event</button>
                                         @else
                                             <button href="#" class="btn btn-primary" style="color:white;">Edit Event</button>

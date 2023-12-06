@@ -14,11 +14,6 @@
     </x-slot>
     <div class="row">
         <div class="col">
-            <figure class="figure">
-                <img src="/img/event2.jpg" class="figure-img img-fluid rounded" alt="..." style="max-width: 550px;">
-            </figure>
-        </div>
-        <div class="col">
             <h3 class="h3"><strong>{{ $results->g_name }}</strong></h3>
             <p class="h6 mt-3 text-body-tertiary"><i class="bi bi-people"></i> {{ $results->g_users }}</p>
             <p class="h6 mt-3 text-body-tertiary"><i class="bi bi-person-check"></i> Group Owner <b>{{ $group_master->first_name.' '.$group_master->last_name }}</b></p>
@@ -148,8 +143,8 @@
                                         @if($user_status === 3 || $user_status == null)
                                         <button href="#" class="btn btn-primary" style="color:white;">Join Event</button>
                                         @else
-                                        <button href="#" class="btn btn-primary" style="color:white;">Edit Event</button>
-                                        <button href="#" class="btn btn-danger" style="color:white">Hapus Event</button>
+                                        {{-- <button href="#" class="btn btn-primary" style="color:white;">Edit Event</button>
+                                        <button href="#" class="btn btn-danger" style="color:white">Hapus Event</button> --}}
                                         @endif
                                     </div>
                                 </div>

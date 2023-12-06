@@ -52,13 +52,13 @@ class EventController extends Controller
         }
 
         $imageName = time() . '_' . $request->file('e_image')->getClientOriginalName();
-        $imagePath = $request->file('e_image')->storeAs('public/eventimages', $imageName);
+        $imagePath = $request->file('e_image')->storeAs('/public/eventimages', $imageName);
         $event = new Event(
             Str::uuid(),
             $request->input('e_name'),
             $request->input('e_description'),
             $request->input('e_place'),
-            $imagePath,
+            '/'.$imagePath,
             $request->input('e_date'),
             $group_id,
             $ug_id,
@@ -93,9 +93,6 @@ class EventController extends Controller
         ]);
         $uid = Auth::user()->id;
         $data = $getGroupPermisionService->execute($uid, $request->input('group_id'));
-
-        dd($data);
-        // dd($data);
         if(!isset($data->Group_Role_gr_id)){
             return redirect()->route('createevent',['status'=>'anda tidak memiliki akses untuk membuat event']);
         }

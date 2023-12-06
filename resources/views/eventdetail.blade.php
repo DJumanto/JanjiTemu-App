@@ -16,7 +16,7 @@
             <p class="h6 mt-3 text-body-tertiary"><i class="bi bi-people"></i> [jumlah anggota grup] orang</p>
             <p class="h6 mt-3 text-body-tertiary"><i class="bi bi-person-check"></i> Dibuat oleh <b>Tester Bro</b></p>
             <br><br>
-            <div class="card" style="width: 18rem;">
+            <div class="card mb-5" style="width: 18rem;">
                 <div class="card-body">
                     <h5 class="card-title">Pelaksanaan Event</h5>
                     <p class="card-text"><i class="bi bi-calendar4-event"></i> [Tanggal Pelaksanaan Event]</p>
@@ -24,9 +24,9 @@
                 </div>
             </div>
             <!-- button to write a comment -->
-            <div class="d-grid d-md-flex mt-5 justify-content-start">
+            <!-- <div class="d-grid d-md-flex mt-5 justify-content-start">
                 <button class="btn btn-info btn comment-btn me-5" href="#" role="button">Beri Komentar <i class="bi bi-chat-left-dots"></i></button>
-            </div>
+            </div> -->
             <!-- button to register to the event -->
             <div class="d-grid d-md-flex mt-3 justify-content-start">
                 <button class="btn btn-primary btn-lg custom-btn me-5" href="#" role="button">Daftar Event <i class="bi bi-plus-circle"></i></button>

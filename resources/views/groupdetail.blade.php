@@ -23,16 +23,20 @@
             <p class="h6 mt-3 text-body-tertiary"><i class="bi bi-people"></i> {{ $results->g_users }}</p>
             <p class="h6 mt-3 text-body-tertiary"><i class="bi bi-person-check"></i> Group Owner <b>{{ $group_master->first_name.' '.$group_master->last_name }}</b></p>
         </div>
+        @if($user_status == null)
         <form method="POST" action="{{ route('group.joingroup', ['group_id' => $group_id]) }}">
             @csrf
             <button type="submit" class="btn btn-primary" style="color:white;">Join Group</button>
         </form>
+        @endif
     </div>
 
     <!-- button to create new event -->
+    @if($user_status == 1 || $user_status == 2)
     <div class="d-grid d-md-flex mt-3 justify-content-end">
         <button class="btn btn-primary btn-lg custom-btn me-5" href="#" role="button">Buat event baru <i class="bi bi-plus-circle"></i></button>
     </div>
+    @endif
 
     <div class="mt-5">
         <div class="row">
@@ -86,7 +90,9 @@
                             <th scope="col">#</th>
                             <th scope="col">Nama</th>
                             <th scope="col">Role</th>
+                            @if($user_status == 1)
                             <th scope="col">Action</th>
+                            @endif
                         </tr>
                     </thead>
                     <tbody>
@@ -98,11 +104,13 @@
                             <th scope="row">{{ $counter }}</th>
                             <td>{{ $member->first_name.' '.$member->last_name }}</td>
                             <td>{{ $member->role }}</td>
+                            @if($user_status == 1)
                             <td>
                                 <button class="btn btn-danger btn-sm" href="#" role="button">Set To Admin</button>
                                 <button class="btn btn-success btn-sm" href="#" role="button">Set To Moderator</button>
                                 <button class="btn btn-primary btn-sm" href="#" role="button">Set To Member</button>
                             </td>
+                            @endif
                         </tr>
                         @php
                         $counter++;
@@ -117,31 +125,35 @@
             <h4 class="h4">Event grup ini</h4>
             <!-- Part Event of The Group Card -->
             <div class="grid gap-0 row-gap-3" id="group-event-card">
-                @foreach($events as $event)
-                <div class="card position-relative" style="width: 100%;">
-                    <div class="row g-0">
-                        <div class="col-md-4">
-                            <img src="{{ str_replace('public', 'storage', $event->e_image) }}" class="card-img-top img-fluid" alt="Event Image">
-                        </div>
-                        <div class="col-md-8">
-                            <div class="card-body">
-                                <h5 class="card-title"><a class="link-dark link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="#">{{ $event->e_name }}</a></h5>
-                                <p class="card-text">Hosted by: {{ $event->g_name }}</p>
-                                <p><i class="bi bi-calendar4-event"></i> {{ \Carbon\Carbon::parse($event->e_date)->format('l, d M Y - H:i A') }}</p>
-                                <h6><i class="bi bi-ticket-perforated"></i> FREE</h6>
-                                <div class="position-absolute bottom-0 end-0 mb-3 me-3">
-                                    @if($user_status === 3 || $user_status == null)
-                                    <button href="#" class="btn btn-primary" style="color:white;">Join Event</button>
-                                    @else
-                                    <button href="#" class="btn btn-primary" style="color:white;">Edit Event</button>
-                                    <button href="#" class="btn btn-danger" style="color:white">Hapus Event</button>
-                                    @endif
+                @if($results->total_event > 0)
+                    @foreach($events as $event)
+                    <div class="card position-relative" style="width: 100%;">
+                        <div class="row g-0">
+                            <div class="col-md-4">
+                                <img src="{{ str_replace('public', 'storage', $event->e_image) }}" class="card-img-top img-fluid" alt="Event Image">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h5 class="card-title"><a class="link-dark link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="#">{{ $event->e_name }}</a></h5>
+                                    <p class="card-text">Hosted by: {{ $event->g_name }}</p>
+                                    <p><i class="bi bi-calendar4-event"></i> {{ \Carbon\Carbon::parse($event->e_date)->format('l, d M Y - H:i A') }}</p>
+                                    <h6><i class="bi bi-ticket-perforated"></i> FREE</h6>
+                                    <div class="position-absolute bottom-0 end-0 mb-3 me-3">
+                                        @if($user_status === 3 || $user_status == null)
+                                        <button href="#" class="btn btn-primary" style="color:white;">Join Event</button>
+                                        @else
+                                        <button href="#" class="btn btn-primary" style="color:white;">Edit Event</button>
+                                        <button href="#" class="btn btn-danger" style="color:white">Hapus Event</button>
+                                        @endif
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                @endforeach
+                    @endforeach
+                @else
+                <h4 class="h4"><strong>Belum ada event yang diadakan oleh grup ini</strong></h3>
+                @endif
             </div>
             <!-- Modal for Editing Event-->
             <div class="modal fade" id="editEvent" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -154,7 +166,7 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <form action="{{ route('event.store') }}" method="post" enctype="multipart/form-data">
+                            <form action="{{ route('event.store', ['group_id' => $group_id]) }}" method="post" enctype="multipart/form-data">
                                 @csrf
                                 <div class="mb-3">
                                     <label for="e_name" class="form-label">Nama Event</label>

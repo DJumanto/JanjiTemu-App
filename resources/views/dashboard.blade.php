@@ -77,9 +77,9 @@
 
     <br><br>
 
-    <div class="d-grid d-md-flex mt-3">
-        <button class="btn btn-primary btn-lg custom-btn" href="{{ route('group.getcreate') }}" role="button">Buat grup baru <i class="bi bi-plus-circle"></i></button>
-    </div>
+    <button class="btn btn-primary btn-lg custom-btn" onclick="window.location='{{ route('group.getcreate') }}'" role="button">Buat grup baru <i class="bi bi-plus-circle"></i>
+    </button>
+
 
     <br>
     <!-- Part Your Group -->

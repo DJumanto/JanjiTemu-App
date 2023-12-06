@@ -27,6 +27,10 @@
             <div class="d-grid d-md-flex mt-5 justify-content-start">
                 <button class="btn btn-info btn comment-btn me-5" href="#" role="button">Beri Komentar <i class="bi bi-chat-left-dots"></i></button>
             </div>
+            <!-- button to register to the event -->
+            <div class="d-grid d-md-flex mt-3 justify-content-start">
+                <button class="btn btn-primary btn-lg custom-btn me-5" href="#" role="button">Daftar Event <i class="bi bi-plus-circle"></i></button>
+            </div>
         </div>
     </div>
     <div class="row">
@@ -36,43 +40,4 @@
         </div>
     </div>
     <br><br>
-    <div class="row">
-        <div class="col">
-            <h4 class="h4">Peserta</h4>
-        </div>
-        <div class="col">
-            <a href="#">Lihat semua</a>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-6">
-            <div class="row rounded p-2" style="background-color:#7879DF;">
-                <div class="card profile-card mb-3" style="width: 11rem; height:15rem; margin-right: 10px;">
-                    <img src="/img/friends-res-no.png" class="card-img-top profile-img" alt="Profile Picture">
-                    <div class="card-body">
-                        <h5 class="card-title">[Nama Akun]</h5>
-                        <p class="text-body-secondary"><em>[role]</em></p>
-                    </div>
-                </div>
-                <div class="card profile-card mb-3" style="width: 11rem; height:15rem; margin-right: 10px;">
-                    <img src="/img/friends-joyce-no.png" class="card-img-top profile-img" alt="Profile Picture">
-                    <div class="card-body">
-                        <h5 class="card-title">[Nama Akun]</h5>
-                        <p class="text-body-secondary"><em>[role]</em></p>
-                    </div>
-                </div>
-                <div class="card profile-card mb-3" style="width: 11rem; height:15rem; margin-right: 10px;">
-                    <img src="/img/JanjiTemu-logo-big-no.png" class="card-img-top profile-img" alt="Profile Picture">
-                    <div class="card-body">
-                        <h5 class="card-title">[Nama Akun]</h5>
-                        <p class="text-body-secondary"><em>[role]</em></p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- button to register to the event -->
-    <div class="d-grid d-md-flex mt-3 justify-content-end">
-        <button class="btn btn-primary btn-lg custom-btn me-5" href="#" role="button">Gabung Event <i class="bi bi-plus-circle"></i></button>
-    </div>
 </x-app-layout>

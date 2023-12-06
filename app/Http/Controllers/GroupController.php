@@ -185,7 +185,8 @@ class GroupController extends Controller
                 return redirect()->route('group.getgroupbyid', ['group_id' => $group_id, 'info' => 'Admin grup telah berganti']);
             }catch(\Exception $e){
                 DB::rollback();
-                return redirect()->route('group.getgroupbyid', ['group_id' => $group_id, 'info' => 'gagal menaikkan hak member']);
+                throw $e;
+                return redirect()->route('group.getgroupbyid', ['group_id' => $group_id, 'info' => 'gagal jadi admin']);
             }
         }else{
             return redirect()->route('group.getgroupbyid', ['group_id' => $group_id, 'info' => 'anda bukan admin grup']);

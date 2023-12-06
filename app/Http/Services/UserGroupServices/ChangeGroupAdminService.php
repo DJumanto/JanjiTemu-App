@@ -17,14 +17,14 @@ class ChangeGroupAdminService{
         $this->sqlGroupRole = $sqlGroupRole;
     }
     public function execute(string $groupId, int $userId, int $adminId){
-        $this->sqlUserGroup->setPrivilege($groupId, $userId, 2);
-        $this->sqlUserGroup->setPrivilege($groupId, $adminId, 1);
+        $this->sqlUserGroup->setPrivilege($groupId, $userId, 1);
+        $this->sqlUserGroup->setPrivilege($groupId, $adminId, 2);
         $user = $this->sqlUser->getUsernameByID($userId);
         $user = $user->first_name . " " . $user->last_name;
         $email = $this->sqlUser->getEmailByID($userId);
         $master = $this->sqlUserGroup->getUserInGroupByRoleId(1, $groupId)[0];
         $master = $master->first_name . " " . $master->last_name;
-        $privilege = 'master';
+        $privilege = $this->sqlGroupRole->getRoleNameByID(1);
         Mail::to($email->email)->send(new PrivilegeNotifMail($user, $privilege, $master));
     }
 }

@@ -25,6 +25,10 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['au
 // Route::get('/group/fegd', [GroupController::class, 'ShowGroupDetailTest'])->name('group.testgd');
 // // Route untuk keperluan pengembangan FE Group Detail + Create Group + Create Event
 // Route::get('/group/fegd/eventcreate', [GroupController::class, 'ShowCreateEventTest'])->name('group.testcreateevent');
+// Route (inline view) untuk keperluan pengembangan FE Event Detail (see event by id)
+Route::get('/eventdetail', function () {
+    return view('eventdetail');
+});
 //todo 
 //add get event by group id
 //add change routing to {{group_id}}

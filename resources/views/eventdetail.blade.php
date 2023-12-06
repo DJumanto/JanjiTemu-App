@@ -29,12 +29,12 @@
             </div> -->
             <!-- button to register to the event -->
             <div class="d-grid d-md-flex mt-3 justify-content-start">
-                <button class="btn btn-primary btn-lg custom-btn me-5" href="#" role="button">Daftar Event <i class="bi bi-plus-circle"></i></button>
+                <button class="btn btn-primary btn-lg custom-btn me-5" href="#" role="button">Daftar Event <i class="bi bi-box-arrow-in-right"></i></button>
             </div>
         </div>
     </div>
     <div class="row">
-        <div class="col-8">
+        <div class="col-7">
             <h4 class="h4">Deskripsi Event</h4>
             <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit nesciunt impedit numquam in ex tempore excepturi ipsam nemo, iure sit perspiciatis nisi amet cum aut sapiente delectus aliquam? Veniam dicta distinctio, saepe doloribus incidunt facere ea perferendis! Quos ducimus tempore consequuntur animi repudiandae eius. Fugiat magni cum corrupti aut ratione repudiandae impedit perferendis modi ducimus porro quae quos dolorum dolor assumenda illum, explicabo possimus, quidem sint consequuntur, distinctio fuga molestiae. Dicta voluptates soluta vel ut commodi dolore omnis, magnam officia aliquam itaque voluptatem consequatur iusto laborum dignissimos deserunt! Optio, in blanditiis. Vero sunt excepturi neque inventore eos ipsum amet maiores.</p>
         </div>

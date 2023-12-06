@@ -30,8 +30,8 @@ class SqlGroup
 
     public function getGroupById(string $id)
     {
-        $group = DB::table('groups')->where('g_id', '=', $id)->get();
-        return $group[0];
+        $group = DB::table('groups')->where('g_id', '=', $id)->first();
+        return $group;
     }
 
     public function getGroupByUserId(int $userID)

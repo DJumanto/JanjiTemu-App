@@ -18,7 +18,7 @@ use App\Http\Services\GroupServices\SearchGroupService;
 use App\Http\Services\GroupServices\GetGroupByIdService;
 use App\Http\Services\GroupServices\GetGroupTotalEventService;
 use App\Http\Services\EventServices\GetEventInGroupService;
-
+use Carbon\Carbon;
 use App\Models\UserGroup;
 use Throwable;
 use Illuminate\Support\Facades\Auth;
@@ -35,7 +35,6 @@ class GroupController extends Controller
     {
         $count = $request->input('count') ?? 10;
         $results = $getGroupService->execute($count);
-        // dd($results);
         return view('group', ['results' => $results]);
     }
 
@@ -53,7 +52,7 @@ class GroupController extends Controller
                 $groupId,
                 $request->input('name'),
                 $request->input('description'),
-                0,
+                1,
                 date('Y-m-d H:i:s')
             );
             $createGroupService->execute($group);
@@ -70,16 +69,21 @@ class GroupController extends Controller
             throw $e;
         }
         DB::commit();
-        dd('success');
-        return redirect()->route('group', ['status' => 'success membuat grup']);
+        $status = 'success membuat grup';
+        $group_id = $groupId;
+        // dd($group_id);
+        return redirect()->route('group.getgroupbyid', compact('group_id', 'status'));
     }
 
     //show group search result
-    public function SearchGroup(Request $request, SearchGroupService $searchGroupService)
+    public function SearchGroup(Request $request, SearchGroupService $searchGroupService, GetGroupService $getGroupService)
     {
-        $group = $request->input('group');
+        if($request->input('search') == null){
+            return redirect()->route('group.getgroup');
+        }
+        $group = $request->input('search');
         $results = $searchGroupService->execute($group);
-        return view('searchgroup', ['results' => $results]);
+        return view('group', ['results' => $results]);
     }
 
     //Get group by id and show it's group's master
@@ -101,7 +105,7 @@ class GroupController extends Controller
         $members = $getGroupMemberService->execute($id);
         $results->total_event = $getGroupTotalEventService->execute($id);
         $group_master = $getUserInGroupByRoleService->execute(1, $id)[0];
-        return view('groupdetail', ['results' => $results, 'group_master' => $group_master, 'members' => $members, 'events' => $events, 'user_status' => $user_status->role, 'group_id' => $id]);
+        return view('groupdetail', ['results' => $results, 'group_master' => $group_master, 'members' => $members, 'events' => $events, 'user_status' => $user_status->role  ?? null, 'group_id' => $id]);
     }
 
     public function JoinGroup(string $id, AddUserGroupService $addUserGroupService)

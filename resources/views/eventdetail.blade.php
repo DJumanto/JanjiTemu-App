@@ -41,13 +41,36 @@
     </div>
 
     <!-- Comment Section -->
-    <form>
+    <form id="commentForm">
         <div class="mt-5 mb-3">
             <label for="commentTextArea" class="form-label"><mark style="background-color: rgb(78, 174, 225); color:white">Beri Komentar</mark></label>
             <div id="commentSection" class="form-text mb-2">Kamu bisa mengirimkan komentar atau pendapatmu untuk acara ini</div>
             <textarea class="form-control" id="commentTextAreaField" rows="3" style="max-width: 700px;"></textarea>
         </div>
-        <button type="submit" class="btn btn-primary comment-btn">Kirim</button>
+        <button type="button" class="btn btn-primary comment-btn" onclick="submitComment()">Kirim</button>
     </form>
+
+    <script>
+        function submitComment() {
+            var commentText = $("#commentTextAreaField").val();
+
+            $.ajax({
+                type: "POST",
+                url: "url_server_anda", // [url server]
+                data: {
+                    comment: commentText
+                },
+                success: function(response) {
+                    console.log(response);
+
+                    $("#commentSection").html("Komentar berhasil dikirim!");
+                },
+                error: function(error) {
+                    console.log("Error:", error);
+                }
+            });
+        }
+    </script>
+
     <br><br>
 </x-app-layout>

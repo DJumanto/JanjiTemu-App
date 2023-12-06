@@ -39,5 +39,15 @@
             <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit nesciunt impedit numquam in ex tempore excepturi ipsam nemo, iure sit perspiciatis nisi amet cum aut sapiente delectus aliquam? Veniam dicta distinctio, saepe doloribus incidunt facere ea perferendis! Quos ducimus tempore consequuntur animi repudiandae eius. Fugiat magni cum corrupti aut ratione repudiandae impedit perferendis modi ducimus porro quae quos dolorum dolor assumenda illum, explicabo possimus, quidem sint consequuntur, distinctio fuga molestiae. Dicta voluptates soluta vel ut commodi dolore omnis, magnam officia aliquam itaque voluptatem consequatur iusto laborum dignissimos deserunt! Optio, in blanditiis. Vero sunt excepturi neque inventore eos ipsum amet maiores.</p>
         </div>
     </div>
+
+    <!-- Comment Section -->
+    <form>
+        <div class="mt-5 mb-3">
+            <label for="commentTextArea" class="form-label"><mark style="background-color: rgb(78, 174, 225); color:white">Beri Komentar</mark></label>
+            <div id="commentSection" class="form-text mb-2">Kamu bisa mengirimkan komentar atau pendapatmu untuk acara ini</div>
+            <textarea class="form-control" id="commentTextAreaField" rows="3" style="max-width: 700px;"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary comment-btn">Kirim</button>
+    </form>
     <br><br>
 </x-app-layout>

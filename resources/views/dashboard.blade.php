@@ -12,7 +12,7 @@
             <div class="card" style="width: 18rem;">
                 <img src="{{ asset(str_replace('public', 'storage', $event->e_image)) }}" class="card-img-top" alt="...">
                 <div class="card-body">
-                    <h5 class="card-title"><a class="link-dark link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="{{ route('event.joinevent', ['group_id' => $event->g_id, 'event_id' => $event->e_id]) }}">{{$event->e_name}}</a></h5>
+                    <h5 class="card-title"><a class="link-dark link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="{{ route('event.geteventdetail', ['group_id' => $event->g_id, 'event_id' => $event->e_id]) }}">{{$event->e_name}}</a></h5>
                     <p class="card-text">Hosted by : {{$event->g_name}}</p>
                     <p class="card-text">Place: {{ $event->e_place }}</p>
                     <p><i class="bi bi-calendar4-event"></i>{{ date('d M Y H:i:s', strtotime($event->e_date)) }}</p>

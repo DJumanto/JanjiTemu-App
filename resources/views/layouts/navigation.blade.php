@@ -14,11 +14,14 @@
             </div>
 
             <!-- Search Event and Group -->
-            <div class="shrink-0 flex items-center">
-                <form class="d-flex flex-row " role="search">
-                    <input class="form-control me-2 rounded" type="search" placeholder="Cari event" aria-label="Search" style="border-color: rgba(0, 0, 0, 0.25);">
-                    <input class="form-control me-2 rounded" type="search" placeholder="Kota terdekat" aria-label="Search" style="border-color: rgba(0, 0, 0, 0.25);">
-                    <button class="btn btn-outline-primary" type="submit"><i class="bi bi-search"></i></button>
+            <div class="shrink-0 flex items-center gap-3">
+                <form method="GET" action="{{ route('event.getsearch')}}" class="d-flex flex-row " role="search">
+                    @csrf
+                    <button class="btn btn-outline-primary" type="submit">Cari Event</i></button>
+                </form>
+                <form method="GET" action="{{ route('group.getgroup')}}" class="d-flex flex-row" role="search">
+                    @csrf
+                    <button class="btn btn-outline-primary" type="submit">Cari Grup</i></button>
                 </form>
             </div>
 

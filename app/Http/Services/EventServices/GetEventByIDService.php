@@ -3,16 +3,13 @@
 namespace App\Http\Services\EventServices;
 
 use App\Http\Repositories\SqlEvent;
-class FindEventService
-{
+class GetEventByIDService{
     private SqlEvent $sqlEvent;
-    public function __construct(SqlEvent $sqlEvent)
-    {
+    public function __construct(SqlEvent $sqlEvent){
         $this->sqlEvent = $sqlEvent;
     }
-    public function execute(string $search)
-    {
-        $results = $this->sqlEvent->findEvent($search);
+    public function execute(string $id){
+        $results = $this->sqlEvent->getEventById($id);
         return $results;
     }
 }

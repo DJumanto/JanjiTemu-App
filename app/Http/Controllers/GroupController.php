@@ -121,7 +121,7 @@ class GroupController extends Controller
         return redirect()->route('group.getgroupbyid', ['group_id' => $id, 'info' => $info]);
     }
 
-    public function SetMemberPrivilege(string $group_id, Request $request, SetPrivilegeService $setPrivilegeService, GetGroupPermisionService $getGroupPermisionService)
+    public function SetModerator(string $group_id, Request $request, SetPrivilegeService $setPrivilegeService, GetGroupPermisionService $getGroupPermisionService)
     {
         $request->validate([
             'user_id' => 'integer|required',
@@ -137,6 +137,7 @@ class GroupController extends Controller
                 return redirect()->route('group.getgroupbyid', ['group_id' => $group_id, 'info' => 'sukses menjadikan hak member sebagai moderator']);
             }catch(\Exception $e){
                 DB::rollback();
+                Throw $e;
                 return redirect()->route('group.getgroupbyid', ['group_id' => $group_id, 'info' => 'gagal menaikkan hak member']);
             }
         }else{
@@ -144,7 +145,7 @@ class GroupController extends Controller
         }
     }
 
-    public function StepDownMemberPrivilege(string $group_id, Request $request, SetPrivilegeService $setPrivilegeService, GetGroupPermisionService $getGroupPermisionService)
+    public function SetMember(string $group_id, Request $request, SetPrivilegeService $setPrivilegeService, GetGroupPermisionService $getGroupPermisionService)
     {
         $request->validate([
             'user_id' => 'integer|required',
@@ -160,6 +161,7 @@ class GroupController extends Controller
                 return redirect()->route('group.getgroupbyid', ['group_id' => $group_id, 'info' => 'sukses menurunkan hak moderator sebagai member']);
             }catch(\Exception $e){
                 DB::rollback();
+                Throw $e;
                 return redirect()->route('group.getgroupbyid', ['group_id' => $group_id, 'info' => 'gagal menurunkan hak moderator']);
             }
         }else{
@@ -167,7 +169,7 @@ class GroupController extends Controller
         }
     }
 
-    public function ChangeGroupAdmin(string $group_id, Request $request, ChangeGroupAdminService $changeGroupAdminService, GetGroupPermisionService $getGroupPermisionService)
+    public function SetAdmin(string $group_id, Request $request, ChangeGroupAdminService $changeGroupAdminService, GetGroupPermisionService $getGroupPermisionService)
     {
         $request->validate([
             'user_id' => 'integer|required',

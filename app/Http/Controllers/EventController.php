@@ -16,15 +16,17 @@ use App\Http\Services\EventServices\GetEventByUserIDService;
 use App\Http\Services\EventServices\JoinEventService;
 use App\Http\Services\CommentaryServices\CreateCommentService;
 use App\Http\Services\CommentaryServices\GetCommentaryService;
+use App\Http\Services\EventServices\GetEventByIDService;
+use App\Http\Services\EventServices\GetEventUserCountService;
 class EventController extends Controller
 {
     
-    public function index(string $group_id){
+    public function eventindex(string $group_id){
         return view('createevent', compact('group_id'));
     }
     public function GetSomeEventLists(GetSomeEventService $getSomeEventService){
         $results = $getSomeEventService->execute(3);
-        return view('index', ['results' => $results]);
+        return view('event', ['results' => $results]);
     }
 
     public function CreateEvent(string $group_id, Request $request, CreateEventService $createEventService, GetGroupPermisionService $getGroupPermisionService){
@@ -34,18 +36,16 @@ class EventController extends Controller
             'e_place'       => 'required|string|max:255',
             'e_image'       => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
             'e_date'        => 'required|date',
-            'group_id'      => 'required|string',
         ]);
         $uid = Auth::user()->id;
         $data = $getGroupPermisionService->execute($uid, $group_id);
-        // dd($data);
-        if(!isset($data->Group_Role_gr_id)){
+        if(!isset($data->role)){
             dd('bjir gagal');
-            return redirect()->route('createevent',['status'=>'anda tidak memiliki akses untuk membuat event']);
+            return redirect()->route('event.eventindex',['status'=>'anda tidak memiliki akses untuk membuat event', 'group_id'=>$group_id]);
         }
-        if($data->Group_Role_gr_id == 3){
+        if($data->role == 3){
             dd('bjir gagal');
-            return redirect()->route('createevent',['status'=>'andat tidak memiliki akses untuk membuat event']);
+            return redirect()->route('event.eventindex',['status'=>'andat tidak memiliki akses untuk membuat event', 'group_id'=>$group_id]);
         }
         else{
             $ug_id = $data->ug_id;
@@ -63,7 +63,6 @@ class EventController extends Controller
             $group_id,
             $ug_id,
         );
-        
         DB::beginTransaction();
         try{
             $createEventService->execute($event);
@@ -73,13 +72,15 @@ class EventController extends Controller
             throw $e;
         }
         DB::commit();
-        dd('success');
-        return redirect()->route('index',['status'=>'success membuat event']);
+        return redirect()->route('group.getgroupbyid', ['status'=>'success membuat event', 'group_id'=>$group_id]);
     }
     public function SearchEvent(Request $request, FindEventService $findEventService){
-        $event = $request->input('event');
+        if($request->input('search') == null){
+            return redirect()->route('event.getsearch');
+        }
+        $event = $request->input('search');
         $results = $findEventService->execute($event);
-        return view('searchevent',['results'=>$results]);
+        return view('event',['results'=>$results]);
 
     }
     public function UpdateEvent(string $event_id, CreateEventService $createEventService, GetGroupPermisionService $getGroupPermisionService, Request $request){
@@ -89,17 +90,16 @@ class EventController extends Controller
             'e_place'       => 'required|string|max:255',
             'e_image'       => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
             'e_date'        => 'required|date',
-            'group_id'      => 'required|string',
         ]);
         $uid = Auth::user()->id;
         $data = $getGroupPermisionService->execute($uid, $request->input('group_id'));
+
+        dd($data);
         // dd($data);
         if(!isset($data->Group_Role_gr_id)){
-            dd('bjir gagal');
             return redirect()->route('createevent',['status'=>'anda tidak memiliki akses untuk membuat event']);
         }
         if($data->Group_Role_gr_id == 3){
-            dd('bjir gagal');
             return redirect()->route('createevent',['status'=>'andat tidak memiliki akses untuk membuat event']);
         }
         else{
@@ -107,7 +107,7 @@ class EventController extends Controller
         }
 
         $imageName = time() . '_' . $request->file('e_image')->getClientOriginalName();
-        $imagePath = $request->file('e_image')->storeAs('public/eventimages', $imageName);
+        $imagePath = $request->file('e_image')->storeAs('/public/eventimages', $imageName);
         $event = new Event(
             $event_id,
             $request->input('e_name'),
@@ -129,7 +129,7 @@ class EventController extends Controller
         }
         DB::commit();
         dd('success');
-        return redirect()->route('index',['status'=>'success membuat event']);
+        return redirect()->route('eventindex',['status'=>'success membuat event']);
     }
     public function DeleteEvent(string $event_id, DeleteEventService $deleteEventService){
         DB::beginTransaction();
@@ -148,17 +148,18 @@ class EventController extends Controller
         return view('myevent', ['results' => $results]);
     }
 
-    public function joinEvent(string $event_id, JoinEventService $joinEventService){
+    public function joinEvent(string $group_id, string $event_id, JoinEventService $joinEventService){
         $user_id = Auth::user()->id;
         DB::beginTransaction();
         try{
-            $info = $joinEventService->execute($user_id, $event_id); 
+            $info = $joinEventService->execute($user_id, $event_id);
         }catch(\Exception $e)
         {
             DB::rollback();
+            return redirect()->route('event.getsearch',['status'=>$info]);
         }
         DB::commit();
-        return redirect()->route('index',['status'=>$info]);
+        return redirect()->route('event.getsearch',['status'=>$info]);
     }
 
     public function AddEventCommentary(Request $request, string $event_id, CreateCommentService $createCommentService)
@@ -184,4 +185,11 @@ class EventController extends Controller
         $comments = $getCommentaryService->execute($event_id);
         return $comments;
     }
+
+    public function getEventByID(string $group_id, string $event_id, GetEventByIDService $getEventByIDService, GetEventUserCountService $getEventUserCountService){
+        $event = $getEventByIDService->execute($event_id);
+        $total = $getEventUserCountService->execute($event_id);
+        return view('eventdetail', ['result' => $event, 'total' => $total->total, 'group_id' => $group_id, 'event_id' => $event_id]);
+    }
+
 }

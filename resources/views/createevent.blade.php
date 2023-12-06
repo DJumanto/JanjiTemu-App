@@ -13,7 +13,7 @@
                     <div class="card-header">Data Event</div>
 
                     <div class="card-body">
-                        <form action="{{ route('event.store') }}" method="post" enctype="multipart/form-data">
+                        <form action="{{ route('event.store', ['group_id' => $group_id]) }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="mb-3">
                                 <label for="e_name" class="form-label">Nama Event</label>

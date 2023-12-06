@@ -25,6 +25,6 @@ class SetPrivilegeService{
         $master = $this->sqlUserGroup->getUserInGroupByRoleId(1, $groupId)[0];
         $master = $master->first_name . " " . $master->last_name;
         $privilege = $this->sqlGroupRole->getRoleNameByID($roleId);
-        Mail::to($email)->send(new PrivilegeNotifMail($user, $privilege, $master));
+        Mail::to($email->email)->send(new PrivilegeNotifMail($user, $privilege, $master));
     }
 }

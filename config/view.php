@@ -17,6 +17,10 @@ return [
         resource_path('views'),
     ],
 
+    'namespaces' => [
+        'mail' => base_path('resources/views/mail'),
+    ],
+
     /*
     |--------------------------------------------------------------------------
     | Compiled View Path

@@ -34,7 +34,7 @@
     <!-- button to create new event -->
     @if($user_status == 1 || $user_status == 2)
     <div class="d-grid d-md-flex mt-3 justify-content-end">
-        <button class="btn btn-primary btn-lg custom-btn me-5" href="#" role="button">Buat event baru <i class="bi bi-plus-circle"></i></button>
+        <a href="{{ route('event.eventindex', ['group_id' => $group_id]) }}" class="btn btn-primary btn-lg custom-btn me-5" role="button">Buat event baru <i class="bi bi-plus-circle"></i></a>
     </div>
     @endif
 
@@ -106,9 +106,15 @@
                             <td>{{ $member->role }}</td>
                             @if($user_status == 1)
                             <td>
-                                <button class="btn btn-danger btn-sm" href="#" role="button">Set To Admin</button>
-                                <button class="btn btn-success btn-sm" href="#" role="button">Set To Moderator</button>
-                                <button class="btn btn-primary btn-sm" href="#" role="button">Set To Member</button>
+                                @switch($member->role)
+                                    @case('moderator')
+                                        <a href="{{ route('privilege.setadmin', ['group_id' => $group_id, 'user_id' => $member->id]) }}" class="btn btn-danger btn-sm" role="button">Set To Admin</a>
+                                        <a href="{{ route('privilege.setmember', ['group_id' => $group_id, 'user_id' => $member->id]) }}" class="btn btn-primary btn-sm" role="button">Set To Member</a>
+                                        @break
+                                    @case('member')
+                                        <a href="{{ route('privilege.setmoderator', ['group_id' => $group_id, 'user_id' => $member->id]) }}" class="btn btn-success btn-sm" role="button">Set To Moderator</a>
+                                        @break
+                                @endswitch
                             </td>
                             @endif
                         </tr>

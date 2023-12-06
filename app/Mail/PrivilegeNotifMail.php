@@ -36,7 +36,7 @@ class PrivilegeNotifMail extends Mailable
     public function build()
     {
         return $this->subject('Group Privilege Notification')
-                    ->view('privilegenotif')
+                    ->view('emails.privilegenotif') // Specify the correct path to your mail view
                     ->with([
                         'user' => $this->user,
                         'privilege' => $this->privilege,

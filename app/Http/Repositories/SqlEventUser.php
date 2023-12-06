@@ -15,7 +15,7 @@ class SqlEventUser{
     public function persist(UserEvent $userEvent)
     {
         DB::table('user_events')->insert([
-            'ue_id' => $userEvent->getUserEventUserId(),
+            'ue_id' => $userEvent->getUserEventId(),
             'User_u_id' => $userEvent->getUserEventUserId(),
             'Event_e_id' => $userEvent->getUserEventEventId(),
         ]);
@@ -39,6 +39,13 @@ class SqlEventUser{
         ->select('ue_id')
         ->where('Event_e_id', $eventID)
         ->count();
+        return $results;
+    }
+    public function getEventMemberCount(string $eventId){
+        $results = DB::table('user_events')
+        ->select(DB::raw('count(*) as total'))
+        ->where('Event_e_id', $eventId)
+        ->first();
         return $results;
     }
 }

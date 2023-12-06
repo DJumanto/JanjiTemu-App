@@ -3,13 +3,13 @@
 
 Hello {{ $user }},
 
-@switch($privilege)
+@switch($privilege->role)
     @case('moderator')
         You have been assigned the role of Moderator in the group. Congratulations!
         @break
 
     @case('member')
-        Your privilege has been set into member
+        Your privilege has been set into member.
         @break
 
     @case('master')
